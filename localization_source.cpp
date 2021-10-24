@@ -43,7 +43,7 @@ struct MyVisionTotal
 	double** AGV11;
 	double** TAG_POS;
 };
-//ÅÅĞò¹æÔò½á¹¹Ìå¶¨Òå
+//æ’åºè§„åˆ™ç»“æ„ä½“å®šä¹‰
 struct cmpByValue
 {
 	bool operator()(const pair<int, double>& leftPair, const pair<int, double>& rightPair)
@@ -51,35 +51,35 @@ struct cmpByValue
 		return leftPair.second < rightPair.second;
 	}
 };
-//Êı¾İ¾«¶È²âÊÔãĞÖµ
+//æ•°æ®ç²¾åº¦æµ‹è¯•é˜ˆå€¼
 const double ep = 0.0001;
 //PI
 const double PI = 3.1415926535898;
-//Õâ¸öÃ»ÓĞÓÃµ½
+//è¿™ä¸ªæ²¡æœ‰ç”¨åˆ°
 const double Resolution = 0.0015;
-//¹âËÙ
+//å…‰é€Ÿ
 const int vLight = 300000000;
-//µ¥Î» raidan/s,±ê×¼²î£¬Ó¦¸ÃÊÇ¹Û²âÔëÉùµÄ±ê×¼²î
+//å•ä½ raidan/s,æ ‡å‡†å·®ï¼Œåº”è¯¥æ˜¯è§‚æµ‹å™ªå£°çš„æ ‡å‡†å·®
 const double PhaseGauss = 0.1; 
-//ÎÄ¼şÂ·¾¶£¬¿ÉÒÔ°ÑĞèÒªµÄÎÄ¼ş·ÅÔÚ¹¤³ÌÎÄ¼ş¼ĞÖĞ£¬¼ò»¯Â·¾¶µÄ¶¨Òå
+//æ–‡ä»¶è·¯å¾„ï¼Œå¯ä»¥æŠŠéœ€è¦çš„æ–‡ä»¶æ”¾åœ¨å·¥ç¨‹æ–‡ä»¶å¤¹ä¸­ï¼Œç®€åŒ–è·¯å¾„çš„å®šä¹‰
 const string MyDataLeftAntenna = R"(E:\MATLAB workspace\hgdw\48\myData - leftAntenna.txt)";
 const string MyDataRightAntenna = R"(E:\MATLAB workspace\hgdw\48\myData - rightAntenna.txt)";
 const string OdometerVisionStartPoint = R"(E:\MATLAB workspace\hgdw\48\odometer_vision_start_point.txt)";
-//Á£×ÓÂË²¨Ñ­»·´ÎÊı£¬ËäÈ»²¢Ã»ÓĞÑ­»·ÕâÃ´¶à´Î
+//ç²’å­æ»¤æ³¢å¾ªç¯æ¬¡æ•°ï¼Œè™½ç„¶å¹¶æ²¡æœ‰å¾ªç¯è¿™ä¹ˆå¤šæ¬¡
 const int Times = 400;
-//»ñÈ¡ÏòÁ¿ÖĞ×î´óÖµ µÄÒ»¸öº¯Êı
+//è·å–å‘é‡ä¸­æœ€å¤§å€¼ çš„ä¸€ä¸ªå‡½æ•°
 int mymax(const vector<int>&);
-//ÕıÌ¬·Ö²¼Éú³Éº¯Êı£¬Éú³ÉÆÚÍûÎªmu£¬±ê×¼²îÎªsigmaµÄÕıÌ¬·Ö²¼
+//æ­£æ€åˆ†å¸ƒç”Ÿæˆå‡½æ•°ï¼Œç”ŸæˆæœŸæœ›ä¸ºmuï¼Œæ ‡å‡†å·®ä¸ºsigmaçš„æ­£æ€åˆ†å¸ƒ
 double gaussrand(const double& mu, const double& sigma);
-//¼ÆËã¾àÀë£¬v1Óëv2ÊÇÁ½¸ö´óĞ¡ÏàÍ¬µÄÏòÁ¿
+//è®¡ç®—è·ç¦»ï¼Œv1ä¸v2æ˜¯ä¸¤ä¸ªå¤§å°ç›¸åŒçš„å‘é‡
 double distance(const vector<double>& v1, const vector<double>& v2);
-//ÊµÏÖk-ÁÙ½üËã·¨
+//å®ç°k-ä¸´è¿‘ç®—æ³•
 vector<int> knnsearch(vector<vector<double>> testData, vector<double> targetData, int k);
-//ÅĞ¶ÏµãÊÇ·ñÂäÈë¶à±ßĞÎÄÚ
+//åˆ¤æ–­ç‚¹æ˜¯å¦è½å…¥å¤šè¾¹å½¢å†…
 vector<bool> inpolygon(const vector<double>& pointX, const vector<double>& pointY, const vector<double>& lineX, const vector<double>& lineY);
 int main()
 {
-	//ÏµÍ³Êı¾İÉè¶¨
+	//ç³»ç»Ÿæ•°æ®è®¾å®š
 	double antennaHLeft = 0;
 	double antennaHRight = 0;
 	double antennaHLeftError = antennaHLeft + 0;
@@ -97,8 +97,8 @@ int main()
 		frequencyVar.push_back(l);
 	}
 
-	//ÏµÍ³Êı¾İµ¼Èë
-	//RFIDºÍ»úÆ÷ÈËÊı¾İ
+	//ç³»ç»Ÿæ•°æ®å¯¼å…¥
+	//RFIDå’Œæœºå™¨äººæ•°æ®
 	fstream fin;
 
 	fin.open(MyDataLeftAntenna, ios::in);
@@ -108,7 +108,7 @@ int main()
 		int n;
 		string s;
 		double d;
-		//µ½´ïÎÄ¼ş½áÎ²ĞèÔÙ´Î¶ÁÈë£¬eof²Å»á±äÎªtrue
+		//åˆ°è¾¾æ–‡ä»¶ç»“å°¾éœ€å†æ¬¡è¯»å…¥ï¼Œeofæ‰ä¼šå˜ä¸ºtrue
 		fin >> n;
 		if (fin.eof())
 			break;
@@ -179,22 +179,22 @@ int main()
 	fin.close();
 
 	fin.open(OdometerVisionStartPoint, ios::in);
-	//ÏÈ¶¨ÒåvectorÔÙÎ²²å
+	//å…ˆå®šä¹‰vectorå†å°¾æ’
 	vector<int> odometerVisionStartPoint;
 	{
 		int OVSP;
 		while (fin >> OVSP)
 			odometerVisionStartPoint.push_back(OVSP);
 	}
-	fin.close();//ğ©Óî¸ç¸çÏ¸½Ú°¡
+	fin.close();
 
-	//ÒÔÏÂÁ½¶Î´úÂëÓÃÓÚ½¨Á¢ËùÓĞµÄEPC£¬²»ÄÑ¿´³ö¹²ÓĞ36¸ö
+	//ä»¥ä¸‹ä¸¤æ®µä»£ç ç”¨äºå»ºç«‹æ‰€æœ‰çš„EPCï¼Œä¸éš¾çœ‹å‡ºå…±æœ‰36ä¸ª
 	vector<int> referenceTag_EPC_No;
 	for (int i = 10; i <= 45; ++i)
 		referenceTag_EPC_No.push_back(i);
 
 	vector<string> referenceTag_EPC;
-	//ÁíÒ»ÖÖ±éÀú·½Ê½°ÕÁË
+	//å¦ä¸€ç§éå†æ–¹å¼ç½¢äº†
 	for (auto x : referenceTag_EPC_No)
 		referenceTag_EPC.push_back("1037-9654-FFFF-FFFF-FFFF-00" + to_string(x));
 
@@ -202,45 +202,45 @@ int main()
 	int odometerRightStartPoint = odometerVisionStartPoint[1];
 	int odometerLeftStartPoint = odometerVisionStartPoint[2];
 
-	//ÊÓ¾õÊı¾İ
-	//Ç°ÆÚ¹¤×÷
-	//¶¨ÒåÎÄ¼şÂ·¾¶
+	//è§†è§‰æ•°æ®
+	//å‰æœŸå·¥ä½œ
+	//å®šä¹‰æ–‡ä»¶è·¯å¾„
 	const char* p = R"(E:\MATLAB workspace\hgdw\0319_3.mat)";
-	//¶¨ÒåÓòÃû
+	//å®šä¹‰åŸŸå
 	const char* name[] = { "AGV_relative", "AtennaL_POS", "AtennaR_POS", "AGV11", "TAG_POS" };
-	//´ò¿ªÊÓ¾õÊı¾İÎÄ¼ş
+	//æ‰“å¼€è§†è§‰æ•°æ®æ–‡ä»¶
 	MATFile* pM = matOpen(p, "r");
-	//»ñÈ¡ÃûÎª"my_vision_total"µÄ±äÁ¿£¬ËüÔÚmatlabÖĞÊÇÒ»¸ö½á¹¹Ìå
+	//è·å–åä¸º"my_vision_total"çš„å˜é‡ï¼Œå®ƒåœ¨matlabä¸­æ˜¯ä¸€ä¸ªç»“æ„ä½“
 	mxArray* pS = matGetVariable(pM, "my_vision_total");
 	MyVisionTotal myVisionTotal;
-	//½á¹¹ÌåÊ×ÔªËØµÄµØÖ·
+	//ç»“æ„ä½“é¦–å…ƒç´ çš„åœ°å€
 	double*** q = &(myVisionTotal.AGV_Relative);
 
-	//Ñ­»·´æ´¢
+	//å¾ªç¯å­˜å‚¨
 	for (int i = 0; i < sizeof(myVisionTotal) / sizeof(double**); ++i)
 	{
-		//´ò¿ª¶ÔÓ¦µÄÓò£¬ÕâÀïµÄPF´æ·ÅµÄÊÇ¸÷fieldµÄÖ¸Õë
+		//æ‰“å¼€å¯¹åº”çš„åŸŸï¼Œè¿™é‡Œçš„PFå­˜æ”¾çš„æ˜¯å„fieldçš„æŒ‡é’ˆ
 		mxArray* pF = mxGetField(pS, 0, name[i]);
-		//°ÑÓòÖĞµÄÊı¾İ´æÈëÒ»¸öÁÙÊ±±äÁ¿
+		//æŠŠåŸŸä¸­çš„æ•°æ®å­˜å…¥ä¸€ä¸ªä¸´æ—¶å˜é‡
 		double* temp = (double*)mxGetData(pF);
-		//»ñÈ¡Êı¾İµÄĞĞÊı
+		//è·å–æ•°æ®çš„è¡Œæ•°
 		auto row = mxGetM(pF);
-		//»ñÈ¡Êı¾İµÄÁĞÊı
+		//è·å–æ•°æ®çš„åˆ—æ•°
 		auto col = mxGetN(pF);
-		//ĞÂ½¨Ö¸ÕëÊı×é£¬Õâ»¹ÊÇ¸ö¶ş¼¶Ö¸Õë£¬Õâ¸öÊı×éÄÚ´æ·ÅµÄÊÇÃ¿Ò»ĞĞµÄÊ×µØÖ·
+		//æ–°å»ºæŒ‡é’ˆæ•°ç»„ï¼Œè¿™è¿˜æ˜¯ä¸ªäºŒçº§æŒ‡é’ˆï¼Œè¿™ä¸ªæ•°ç»„å†…å­˜æ”¾çš„æ˜¯æ¯ä¸€è¡Œçš„é¦–åœ°å€
 		*(q + i) = new double* [row];
 		for (int j = 0; j < row; ++j)
 		{
-			//ĞÂ½¨ double ÀàĞÍµÄÊı×é
+			//æ–°å»º double ç±»å‹çš„æ•°ç»„
 			*(*(q + i) + j) = new double[col];
 			for (int k = 0; k < col; ++k)
-				//°ÑÁÙÊ±±äÁ¿µÄÖµ¸³¸ø½á¹¹ÌåµÄ±äÁ¿
+				//æŠŠä¸´æ—¶å˜é‡çš„å€¼èµ‹ç»™ç»“æ„ä½“çš„å˜é‡
 				*(*(*(q + i) + j) + k) = temp[k * row + j];
 		}
 	}
-	//ÖÁ´Ë£¬Êı¾İÒÑ°´ÕÕ.matÎÄ¼şÖĞµÄÅÅ²¼È«²¿µ¼Èë½øÁËC++ÖĞµÄmyVisionTotal
+	//è‡³æ­¤ï¼Œæ•°æ®å·²æŒ‰ç…§.matæ–‡ä»¶ä¸­çš„æ’å¸ƒå…¨éƒ¨å¯¼å…¥è¿›äº†C++ä¸­çš„myVisionTotal
 
-	/*Êı¾İ¼ì²â*/
+	/*æ•°æ®æ£€æµ‹*/
 	// for (int i = 0; i < sizeof(myVisionTotal) / sizeof(double **); i++)
 	// {
 	// 	mxArray *pF = mxGetField(pS, 0, name[i]);
@@ -255,20 +255,20 @@ int main()
 	// }
 	/**************/
 
-	//_msize()º¯ÊıÓÃÓÚ»ñÈ¡new³öÀ´ÄÚ´æµÄ´óĞ¡
-	//¶ººÅÇ°ºó·Ö±ğÓÃÀ´»ñÈ¡ĞĞÊıºÍÁĞÊı£¬×¢ÒâÉè¶¨ÁĞÊıÊ±vector<double>²»ÄÜÉÙ
+	//_msize()å‡½æ•°ç”¨äºè·å–newå‡ºæ¥å†…å­˜çš„å¤§å°
+	//é€—å·å‰ååˆ†åˆ«ç”¨æ¥è·å–è¡Œæ•°å’Œåˆ—æ•°ï¼Œæ³¨æ„è®¾å®šåˆ—æ•°æ—¶vector<double>ä¸èƒ½å°‘
 	vector<vector<double>> myVisionCurrent_AGV(_msize(myVisionTotal.AGV11) / sizeof(myVisionTotal.AGV11[0]), vector<double>(_msize(myVisionTotal.AGV11[0]) / sizeof(myVisionTotal.AGV11[0][0])));
 	for (int i = 0; i < _msize(myVisionTotal.AGV11) / sizeof(myVisionTotal.AGV11[0]); ++i)
 		for (int j = 0; j < _msize(myVisionTotal.AGV11[0]) / sizeof(myVisionTotal.AGV11[0][0]); ++j)
 			myVisionCurrent_AGV[i][j] = myVisionTotal.AGV11[i][j];
 
-	//Êı×é×ªÖÃÁËÒ»´Î
+	//æ•°ç»„è½¬ç½®äº†ä¸€æ¬¡
 	vector<vector<double>> referenceTag(_msize(myVisionTotal.TAG_POS[0]) / sizeof(myVisionTotal.TAG_POS[0][0]), vector<double>(_msize(myVisionTotal.TAG_POS) / sizeof(myVisionTotal.TAG_POS[0])));
 	for (int i = 0; i < _msize(myVisionTotal.TAG_POS[0]) / sizeof(myVisionTotal.TAG_POS[0][0]); ++i)
 		for (int j = 0; j < _msize(myVisionTotal.TAG_POS) / sizeof(myVisionTotal.TAG_POS[0]); ++j)
 			referenceTag[i][j] = myVisionTotal.TAG_POS[j][i] * 100;
 
-	//ÕâÀïÓÃµÄÊÇ×ªÖÃÇ°µÄ¾ØÕó£¬ÓÚÊÇÇó±êÇ©ÊıµÄ»°¾ÍÇóÁĞÊı¾ÍºÃ£¨ÒòÎªÕâÊ±»¹Ã»ÓĞ×ªÖÃ£©
+	//è¿™é‡Œç”¨çš„æ˜¯è½¬ç½®å‰çš„çŸ©é˜µï¼Œäºæ˜¯æ±‚æ ‡ç­¾æ•°çš„è¯å°±æ±‚åˆ—æ•°å°±å¥½ï¼ˆå› ä¸ºè¿™æ—¶è¿˜æ²¡æœ‰è½¬ç½®ï¼‰
 	int referenceTagNum = _msize(myVisionTotal.TAG_POS[0]) / sizeof(myVisionTotal.TAG_POS[0][0]);
 
 	for (int i = 0; i < 3; i++)
@@ -285,29 +285,29 @@ int main()
 	//3 4 1 2 -> 3 1 4 2
 	myVisionCurrent_AGV[1].swap(myVisionCurrent_AGV[2]);
 
-	//ÓÖÊÇÕâÖÖ±éÀú·½·¨£¬Èô²»¼ÓÒıÓÃÔòÎŞ·¨¸ü¸Ä
+	//åˆæ˜¯è¿™ç§éå†æ–¹æ³•ï¼Œè‹¥ä¸åŠ å¼•ç”¨åˆ™æ— æ³•æ›´æ”¹
 	for (auto& vec : referenceTag)
 	{
-		//×¢ÒâÃ¿Ò»²ãÑ­»·ÖĞ£¬vec¶¼ÊÇreferenceTagÖĞµÄÄ³Ò»ĞĞ¡£¹ÊÑ­»·¹²ĞèÒªÖ´ĞĞĞĞÊı´Î
+		//æ³¨æ„æ¯ä¸€å±‚å¾ªç¯ä¸­ï¼Œvecéƒ½æ˜¯referenceTagä¸­çš„æŸä¸€è¡Œã€‚æ•…å¾ªç¯å…±éœ€è¦æ‰§è¡Œè¡Œæ•°æ¬¡
 		auto temp = vec[2];
 		vec[2] = vec[1];
 		vec[1] = vec[0];
 		vec[0] = temp;
 	}
 
-	//¼ÆËãÌìÏßÔÚÒÆ¶¯»úÆ÷ÈË×ø±êÏµÏÂµÄ×ø±ê
-	//²»ÄÑ·¢ÏÖrelativeµÄ[3][0]¼´µÚËÄ¸öÊıÊÇ½Ç¶È
+	//è®¡ç®—å¤©çº¿åœ¨ç§»åŠ¨æœºå™¨äººåæ ‡ç³»ä¸‹çš„åæ ‡
+	//ä¸éš¾å‘ç°relativeçš„[3][0]å³ç¬¬å››ä¸ªæ•°æ˜¯è§’åº¦
 	vector<double> antennaR_Robot(2);
-	antennaR_Robot[0] = (myVisionTotal.AntennaR_POS[2][0] - myVisionTotal.AGV_Relative[2][0]) * cos(-myVisionTotal.AGV_Relative[3][0]) - (myVisionTotal.AntennaR_POS[0][0] - myVisionTotal.AGV_Relative[0][0]) * sin(-myVisionTotal.AGV_Relative[3][0]); //»úÆ÷ÈËÏÂµÄx×ø±ê
-	antennaR_Robot[1] = (myVisionTotal.AntennaR_POS[2][0] - myVisionTotal.AGV_Relative[2][0]) * sin(-myVisionTotal.AGV_Relative[3][0]) + (myVisionTotal.AntennaR_POS[0][0] - myVisionTotal.AGV_Relative[0][0]) * cos(-myVisionTotal.AGV_Relative[3][0]); //»úÆ÷ÈËÏÂµÄy×ø±ê
+	antennaR_Robot[0] = (myVisionTotal.AntennaR_POS[2][0] - myVisionTotal.AGV_Relative[2][0]) * cos(-myVisionTotal.AGV_Relative[3][0]) - (myVisionTotal.AntennaR_POS[0][0] - myVisionTotal.AGV_Relative[0][0]) * sin(-myVisionTotal.AGV_Relative[3][0]); //æœºå™¨äººä¸‹çš„xåæ ‡
+	antennaR_Robot[1] = (myVisionTotal.AntennaR_POS[2][0] - myVisionTotal.AGV_Relative[2][0]) * sin(-myVisionTotal.AGV_Relative[3][0]) + (myVisionTotal.AntennaR_POS[0][0] - myVisionTotal.AGV_Relative[0][0]) * cos(-myVisionTotal.AGV_Relative[3][0]); //æœºå™¨äººä¸‹çš„yåæ ‡
 
 	vector<double> antennaL_Robot(2);
-	antennaL_Robot[0] = (myVisionTotal.AntennaL_POS[2][0] - myVisionTotal.AGV_Relative[2][0]) * cos(-myVisionTotal.AGV_Relative[3][0]) - (myVisionTotal.AntennaL_POS[0][0] - myVisionTotal.AGV_Relative[0][0]) * sin(-myVisionTotal.AGV_Relative[3][0]); //»úÆ÷ÈËÏÂµÄx×ø±ê
-	antennaL_Robot[1] = (myVisionTotal.AntennaL_POS[2][0] - myVisionTotal.AGV_Relative[2][0]) * sin(-myVisionTotal.AGV_Relative[3][0]) + (myVisionTotal.AntennaL_POS[0][0] - myVisionTotal.AGV_Relative[0][0]) * cos(-myVisionTotal.AGV_Relative[3][0]); //»úÆ÷ÈËÏÂµÄy×ø±ê
+	antennaL_Robot[0] = (myVisionTotal.AntennaL_POS[2][0] - myVisionTotal.AGV_Relative[2][0]) * cos(-myVisionTotal.AGV_Relative[3][0]) - (myVisionTotal.AntennaL_POS[0][0] - myVisionTotal.AGV_Relative[0][0]) * sin(-myVisionTotal.AGV_Relative[3][0]); //æœºå™¨äººä¸‹çš„xåæ ‡
+	antennaL_Robot[1] = (myVisionTotal.AntennaL_POS[2][0] - myVisionTotal.AGV_Relative[2][0]) * sin(-myVisionTotal.AGV_Relative[3][0]) + (myVisionTotal.AntennaL_POS[0][0] - myVisionTotal.AGV_Relative[0][0]) * cos(-myVisionTotal.AGV_Relative[3][0]); //æœºå™¨äººä¸‹çš„yåæ ‡
 
-	//ÌìÏß¸ß¶ÈºÍ½Ç¶È
-	//¹´¹É¶¨Àí
-	//ÏÂÊö½Ç¶ÈÓë¸ß¶ÈÎªºÎ£¿
+	//å¤©çº¿é«˜åº¦å’Œè§’åº¦
+	//å‹¾è‚¡å®šç†
+	//ä¸‹è¿°è§’åº¦ä¸é«˜åº¦ä¸ºä½•ï¼Ÿ
 	antennaHRight = sqrt(antennaR_Robot[0] * antennaR_Robot[0] + antennaR_Robot[1] * antennaR_Robot[1]) * 100;
 	antennaHRightError = antennaHRight - 0;
 	antennaAlphaRight = atan(abs(antennaR_Robot[0] / antennaR_Robot[1])) + PI / 2; //45 / 180 * PI
@@ -317,20 +317,20 @@ int main()
 	antennaAlphaLeft = atan(abs(antennaL_Robot[0] / antennaL_Robot[1])) + PI / 2; //45 / 180 * PI
 	antennaAlphaLeftError = antennaAlphaLeft + 0 / 180 * PI;
 
-	//»æÖÆ - Î´Íê³É
+	//ç»˜åˆ¶ - æœªå®Œæˆ
 
-	//¶ÁÈ¡£¬²¢¶Ô²âÊÔÊı¾İ·ÖÀà
-	//ÌáÈ¡×óÓÒÌìÏß¶ÁÈ¡±êÇ©µÄepc¡¢¸Ãepc±êÇ©µÄ¶ÁÈ¡´ÎÊı¡¢±êÇ©µÄÊıÁ¿
+	//è¯»å–ï¼Œå¹¶å¯¹æµ‹è¯•æ•°æ®åˆ†ç±»
+	//æå–å·¦å³å¤©çº¿è¯»å–æ ‡ç­¾çš„epcã€è¯¥epcæ ‡ç­¾çš„è¯»å–æ¬¡æ•°ã€æ ‡ç­¾çš„æ•°é‡
 	for (auto& x : myDataResultLeft.data.phase)
-		//½«ÏàÎ»×ª»¯Îª»¡¶È
+		//å°†ç›¸ä½è½¬åŒ–ä¸ºå¼§åº¦
 		x = x / 180 * PI;
 
-	//textDataÖĞ´æ·ÅµÄÊÇ¶ÁÈ¡µÄ´ÎÊıºÍÃ¿Ò»´Î¶ÁÈ¡µ½µÄepc£¬ÏÂÃæÒ»¶Î´úÂëÖ»ÊÇÒ»¸öÌáÈ¡²Ù×÷
+	//textDataä¸­å­˜æ”¾çš„æ˜¯è¯»å–çš„æ¬¡æ•°å’Œæ¯ä¸€æ¬¡è¯»å–åˆ°çš„epcï¼Œä¸‹é¢ä¸€æ®µä»£ç åªæ˜¯ä¸€ä¸ªæå–æ“ä½œ
 	vector<string> epcDataLeft(myDataResultLeft.textData.epcData.size());
 	for (int i = 0; i < epcDataLeft.size(); ++i)
 		epcDataLeft[i] = myDataResultLeft.textData.epcData[i];
 
-	//ÓÃÀ´Í³¼ÆÃ¿¸ö±êÇ©±»¶ÁÈ¡µÄ´ÎÊı
+	//ç”¨æ¥ç»Ÿè®¡æ¯ä¸ªæ ‡ç­¾è¢«è¯»å–çš„æ¬¡æ•°
 	vector<int> referenceTagCountLeft(referenceTagNum);
 	vector<vector<int>> referenceTagNumLeft;
 	for (int i = 0; i < myDataResultLeft.data.no.size(); ++i)
@@ -343,7 +343,8 @@ int main()
 					vector<int> v(referenceTagNum);
 					referenceTagNumLeft.push_back(v);
 				}
-				// -1ÊÇÎªÁËÔÚvector¹æ¶¨µÄÄÚ´æÀï
+				// -1æ˜¯ä¸ºäº†åœ¨vectorè§„å®šçš„å†…å­˜é‡Œ
+				//æŠŠå“ªä¸€ä¸ªæ ‡ç­¾çš„å“ªä¸€æ¬¡è¯»åˆ°æ˜¯æ€»ä½“ä¸Šè¯»å–çš„ç¬¬å‡ æ¬¡è®°å½•åˆ°äºŒç»´æ•°ç»„ä¸­
 				referenceTagNumLeft[referenceTagCountLeft[j] - 1][j] = i;
 				break;
 			}
@@ -367,31 +368,35 @@ int main()
 					vector<int> v(referenceTagNum);
 					referenceTagNumRight.push_back(v);
 				}
-				// -1ÊÇÎªÁËÔÚvector¹æ¶¨µÄÄÚ´æÀï
+				// -1æ˜¯ä¸ºäº†åœ¨vectorè§„å®šçš„å†…å­˜é‡Œ
 				referenceTagNumRight[referenceTagCountRight[j] - 1][j] = i;
 				break;
 			}
 
-	//Ê±¼ä
+	//æ—¶é—´
 	vector<double> readerTimeLeft = myDataResultLeft.data.readerTime;
 	vector<double> windowsTimeLeft = myDataResultLeft.data.windowsTime;
 	vector<double> readerTimeRight = myDataResultRight.data.readerTime;
 	vector<double> windowsTimeRight = myDataResultRight.data.windowsTime;
 
-	//±êÇ©¶ÁÈ¡ËÙ¶È
+	//æ ‡ç­¾è¯»å–é€Ÿåº¦
+	//æ³¨æ„frontå’Œbackä¸æ˜¯è¿­ä»£å™¨beginå’Œendï¼Œä»¥æ¯«ç§’ä¸ºå•ä½ï¼Ÿ
 	double tagReaderRate = myDataResultLeft.data.no.size() / (myDataResultLeft.data.readerTime.back() - myDataResultLeft.data.readerTime.front()) * 1000000;
 
-	//ÏàÎ»Ô¤´¦Àí
+	//ç›¸ä½é¢„å¤„ç†
 	double indexLb = 0.5; //0.5;%1/2 3/4 2/3
 	double indexUb = 1.5; //3/2 5/4 4/3
 
+	//è¡Œæ•°æ˜¯è¯»å–çš„æœ€å¤šæ¬¡æ•°ï¼Œåˆ—æ•°æ˜¯æ ‡ç­¾æ€»æ•°
 	vector<vector<double>> phaseMeasurementAdjustLeft(mymax(referenceTagCountLeft), vector<double>(referenceTagNum));
 	for (int j = 0; j < referenceTagNum; ++j)
 		if (referenceTagCountLeft[j] > 1)
 		{
+			//å·¦è¾¹çš„é›¶æ˜¯å‡è¿‡1ï¼Œ0è¡¨ç¤ºè¢«è¯»å–è¿‡ä¸€æ¬¡ï¼Œjè¡¨ç¤ºç¬¬jä¸ªæ ‡ç­¾ã€‚æ•…ä¸‹é¢ä¸€è¡Œä»£ç æ˜¯æ¯ä¸ªæ ‡ç­¾è¢«ç¬¬ä¸€æ¬¡è¯»å–çš„ç›¸ä½
 			phaseMeasurementAdjustLeft[0][j] = myDataResultLeft.data.phase[referenceTagNumLeft[0][j]];
 			for (int i = 1; i < referenceTagCountLeft[j]; ++i)
 			{
+				//ç›¸å½“äºåœ¨é¢„å¤„ç†åæŠŠæ¯ä¸€æ¬¡çš„ç›¸ä½å·®éƒ½åœ¨-pi/2~pi/2ä¹‹é—´
 				auto dif = myDataResultLeft.data.phase[referenceTagNumLeft[i][j]] - phaseMeasurementAdjustLeft[i - 1][j];
 				if ((dif > PI * indexLb) && (dif < PI * indexUb))
 					phaseMeasurementAdjustLeft[i][j] = myDataResultLeft.data.phase[referenceTagNumLeft[i][j]] - PI;
@@ -407,6 +412,8 @@ int main()
 			for (auto& x : vec)
 				x = 2 * PI - x;
 
+	//è¡Œæ•°æ˜¯è¯»å–çš„æœ€å¤šæ¬¡æ•°ï¼Œåˆ—æ•°æ˜¯æ ‡ç­¾æ€»æ•°
+	//ä¸‹é¢ä¸€æ®µä»£ç å°†å‰åä¸¤æ¬¡è¯»å–çš„ç›¸ä½å·®å€¼ç¼©å°åˆ°PIå†…
 	vector<vector<double>> phasePsoLeft(mymax(referenceTagCountLeft), vector<double>(referenceTagNum));
 	for (int j = 0; j < referenceTagNum; ++j)
 		if (referenceTagCountLeft[j] > 1)
@@ -452,13 +459,13 @@ int main()
 			}
 		}
 
-	// ÓÒÌìÏß£ºÀûÓÃÊ±¼ä²îĞÅÏ¢£¬Í¨¹ı²åÖµ·¨µÃµ½ÏàÎ»²âÁ¿Ê±¿ÌÕæÊµµÄÒÆ¶¯»úÆ÷ÈËºÍÌìÏßµÄÎ»×Ë/Î»ÖÃ
+	// å³å¤©çº¿ï¼šåˆ©ç”¨æ—¶é—´å·®ä¿¡æ¯ï¼Œé€šè¿‡æ’å€¼æ³•å¾—åˆ°ç›¸ä½æµ‹é‡æ—¶åˆ»çœŸå®çš„ç§»åŠ¨æœºå™¨äººå’Œå¤©çº¿çš„ä½å§¿/ä½ç½®
 	vector<vector<double>> trackMobileRobotRight;
 	trackMobileRobotRight.push_back(myDataResultRight.data.Xcoordinate);
 	trackMobileRobotRight.push_back(myDataResultRight.data.Ycoordinate);
 	trackMobileRobotRight.push_back(myDataResultRight.data.Zcoordinate);
 
-	//½«Àï³Ì¼ÆµÃµ½µÄ»úÆ÷ÈËº½¼£·Ö·¢
+	//å°†é‡Œç¨‹è®¡å¾—åˆ°çš„æœºå™¨äººèˆªè¿¹åˆ†å‘
 	vector<vector<vector<double>>> trackMobileRobotRightTag(referenceTagNum, vector<vector<double>>(mymax(referenceTagCountRight), vector<double>(3)));
 	for (int j = 0; j < referenceTagNum; ++j)
 		if (referenceTagCountRight[j] > 1)
@@ -466,12 +473,12 @@ int main()
 				for (int k = 0; k < 3; ++k)
 					trackMobileRobotRightTag[j][i][k] = trackMobileRobotRight[k][referenceTagNumRight[i][j]];
 
-	//¼ÆËã³öÊÓ¾õµÄÊ±¼ä²î
+	//è®¡ç®—å‡ºè§†è§‰çš„æ—¶é—´å·®
 	vector<double> visionTimeDiff(myVisionCurrent_AGV[0].size());
 	for (int i = 0; i < myVisionCurrent_AGV[0].size() - visionStartPoint + 1; ++i)
 		visionTimeDiff[i + visionStartPoint - 1] = 1.0 / 120 * (i + 1);
 
-	//È¥³ıNaN
+	//å»é™¤NaN
 	for (int i = 0; i < myVisionCurrent_AGV[0].size();)
 		if (isnan(myVisionCurrent_AGV[0][i]))
 		{
@@ -482,7 +489,7 @@ int main()
 		else
 			++i;
 
-	//¾ÀÕıÊÓ¾õËù»ñµÃµÄÒÆ¶¯»úÆ÷ÈË³¯Ïò½ÇÊı¾İ
+	//çº æ­£è§†è§‰æ‰€è·å¾—çš„ç§»åŠ¨æœºå™¨äººæœå‘è§’æ•°æ®
 	myVisionCurrent_AGV[2][0] = myVisionCurrent_AGV[2][0];
 	for (int i = 1; i < myVisionCurrent_AGV[2].size(); ++i)
 	{
@@ -490,12 +497,12 @@ int main()
 		myVisionCurrent_AGV[2][i] = myVisionCurrent_AGV[2][i] - PI * k;
 	}
 
-	//¼ÆËã³öÀï³Ì¼ÆµÄÊ±¼ä²î
+	//è®¡ç®—å‡ºé‡Œç¨‹è®¡çš„æ—¶é—´å·®
 	vector<double> odometerTimeDiff(readerTimeRight.size() - odometerRightStartPoint + 1);
 	for (int i = 0; i < odometerTimeDiff.size(); ++i)
 		odometerTimeDiff[i] = (readerTimeRight[odometerRightStartPoint - 1 + i] - readerTimeRight[odometerRightStartPoint - 1]) / 1000000;
 
-	//Í¨¹ı²åÖµ·¨»ñµÃÒÆ¶¯»úÆ÷ÈËÎ»×Ëµã
+	//é€šè¿‡æ’å€¼æ³•è·å¾—ç§»åŠ¨æœºå™¨äººä½å§¿ç‚¹
 	vector<vector<double>> mobileRobotPoseVisionRight(odometerTimeDiff.size() + odometerRightStartPoint - 1, vector<double>(4));
 	for (int i = 0; i < odometerRightStartPoint - 1; ++i)
 		for (int j = 0; j < myVisionCurrent_AGV.size(); ++j)
@@ -506,7 +513,7 @@ int main()
 		int pointPso = 0;
 		bool preFlag = false;
 		bool psoFlag = false;
-		//ÏÈÕÒµ½ Àï³Ì¼ÆµÄÊ±¼ä ÔÚ ÊÓ¾õÊ±¼äĞòÁĞÖĞ µÄ Ç°ºóÁ½¸ö×î½ü µÄÎ»×Ëµã
+		//å…ˆæ‰¾åˆ° é‡Œç¨‹è®¡çš„æ—¶é—´ åœ¨ è§†è§‰æ—¶é—´åºåˆ—ä¸­ çš„ å‰åä¸¤ä¸ªæœ€è¿‘ çš„ä½å§¿ç‚¹
 		for (auto it = visionTimeDiff.begin(); it != visionTimeDiff.end(); ++it)
 		{
 			if ((*it) >= odometerTimeDiff[j] && !psoFlag)
@@ -532,7 +539,7 @@ int main()
 				mobileRobotPoseVisionRight[j + odometerRightStartPoint - 1][i] = (odometerTimeDiff[j] - visionTimeDiff[pointPso]) / (visionTimeDiff[pointPre] - visionTimeDiff[pointPso]) * myVisionCurrent_AGV[i][pointPre] + (odometerTimeDiff[j] - visionTimeDiff[pointPre]) / (visionTimeDiff[pointPso] - visionTimeDiff[pointPre]) * myVisionCurrent_AGV[i][pointPso];
 	}
 
-	//ÓÒÌìÏß£ºÓÉÉÏÊö²åÖµµÃµ½µÄ»úÆ÷ÈËÊµ¼ÊÂ·¾¶£¬µÃµ½ÀíÂÛµÄÏàÎ»ĞòÁĞ
+	//å³å¤©çº¿ï¼šç”±ä¸Šè¿°æ’å€¼å¾—åˆ°çš„æœºå™¨äººå®é™…è·¯å¾„ï¼Œå¾—åˆ°ç†è®ºçš„ç›¸ä½åºåˆ—
 	vector<vector<vector<double>>> trackMobileRobotRightAntennaReal(referenceTagNum, vector<vector<double>>(mymax(referenceTagCountRight), vector<double>(2)));
 	vector<vector<double>> distanceTheory(mymax(referenceTagCountRight), vector<double>(referenceTagNum));
 	vector<vector<double>> phaseTagTheoryRight(mymax(referenceTagCountRight), vector<double>(referenceTagNum));
@@ -546,20 +553,20 @@ int main()
 				phaseTagTheoryRight[i][j] = distanceTheory[i][j] * 2 * PI / waveLengthVar[0];
 			}
 
-	//ÓÒÌìÏß£ºĞÅºÅÇ¿¶È·ÖÎö
+	//å³å¤©çº¿ï¼šä¿¡å·å¼ºåº¦åˆ†æ
 	vector<vector<int>> RSSI_TagRight(mymax(referenceTagCountRight), vector<int>(referenceTagNum));
 	for (int j = 0; j < referenceTagNum; ++j)
 		if (referenceTagCountRight[j] > 1)
 			for (int i = 0; i < referenceTagCountRight[j]; ++i)
 				RSSI_TagRight[i][j] = myDataResultRight.data.RSSI[referenceTagNumRight[i][j]];
 
-	//×óÌìÏß£ºÀûÓÃÊ±¼ä²îĞÅÏ¢£¬Í¨¹ı²åÖµ·¨µÃµ½ÏàÎ»²âÂ³Ê±¿ÌÕæÊµµÄÒÆ¶¯»úÆ÷ÈËºÍÌìÏßµÄÎ»×Ë/Î»ÖÃ
+	//å·¦å¤©çº¿ï¼šåˆ©ç”¨æ—¶é—´å·®ä¿¡æ¯ï¼Œé€šè¿‡æ’å€¼æ³•å¾—åˆ°ç›¸ä½æµ‹é²æ—¶åˆ»çœŸå®çš„ç§»åŠ¨æœºå™¨äººå’Œå¤©çº¿çš„ä½å§¿/ä½ç½®
 	vector<vector<double>> trackMobileRobotLeft;
 	trackMobileRobotLeft.push_back(myDataResultLeft.data.Xcoordinate);
 	trackMobileRobotLeft.push_back(myDataResultLeft.data.Ycoordinate);
 	trackMobileRobotLeft.push_back(myDataResultLeft.data.Zcoordinate);
 
-	//Àï³Ì¼ÆµÃµ½µÄ»úÆ÷ÈËº½¼£·Ö·¢
+	//é‡Œç¨‹è®¡å¾—åˆ°çš„æœºå™¨äººèˆªè¿¹åˆ†å‘
 	vector<vector<vector<double>>> trackMobileRobotLeftTag(referenceTagNum, vector<vector<double>>(mymax(referenceTagCountLeft), vector<double>(3)));
 	for (int j = 0; j < referenceTagNum; ++j)
 		if (referenceTagCountLeft[j] > 1)
@@ -567,13 +574,13 @@ int main()
 				for (int k = 0; k < 3; ++k)
 					trackMobileRobotLeftTag[j][i][k] = trackMobileRobotLeft[k][referenceTagNumLeft[i][j]];
 
-	//¼ÆËã³öÀï³Ì¼ÆµÄÊ±¼ä²î
+	//è®¡ç®—å‡ºé‡Œç¨‹è®¡çš„æ—¶é—´å·®
 	odometerTimeDiff.clear();
 	odometerTimeDiff.resize(readerTimeLeft.size() - odometerLeftStartPoint + 1);
 	for (int i = 0; i < odometerTimeDiff.size(); ++i)
 		odometerTimeDiff[i] = (readerTimeLeft[odometerLeftStartPoint - 1 + i] - readerTimeLeft[odometerLeftStartPoint - 1]) / 1000000;
 
-	//Í¨¹ı²åÖµ·¨»ñµÃÒÆ¶¯»úÆ÷ÈËÎ»×Ëµã
+	//é€šè¿‡æ’å€¼æ³•è·å¾—ç§»åŠ¨æœºå™¨äººä½å§¿ç‚¹
 	vector<vector<double>> mobileRobotPoseVisionLeft(odometerTimeDiff.size() + odometerLeftStartPoint - 1, vector<double>(4));
 	for (int i = 0; i < odometerLeftStartPoint - 1; ++i)
 		for (int j = 0; j < myVisionCurrent_AGV.size(); ++j)
@@ -584,7 +591,7 @@ int main()
 		int pointPso = 0;
 		bool preFlag = false;
 		bool psoFlag = false;
-		//ÏÈÕÒµ½ Àï³Ì¼ÆµÄÊ±¼ä ÔÚ ÊÓ¾õÊ±¼äĞòÁĞÖĞ µÄ Ç°ºóÁ½¸ö×î½ü µÄÎ»×Ëµã
+		//å…ˆæ‰¾åˆ° é‡Œç¨‹è®¡çš„æ—¶é—´ åœ¨ è§†è§‰æ—¶é—´åºåˆ—ä¸­ çš„ å‰åä¸¤ä¸ªæœ€è¿‘ çš„ä½å§¿ç‚¹
 		for (auto it = visionTimeDiff.begin(); it != visionTimeDiff.end(); ++it)
 		{
 			if ((*it) >= odometerTimeDiff[j] && !psoFlag)
@@ -610,7 +617,7 @@ int main()
 				mobileRobotPoseVisionLeft[j + odometerLeftStartPoint - 1][i] = (odometerTimeDiff[j] - visionTimeDiff[pointPso]) / (visionTimeDiff[pointPre] - visionTimeDiff[pointPso]) * myVisionCurrent_AGV[i][pointPre] + (odometerTimeDiff[j] - visionTimeDiff[pointPre]) / (visionTimeDiff[pointPso] - visionTimeDiff[pointPre]) * myVisionCurrent_AGV[i][pointPso];
 	}
 
-	//×óÌìÏß£ºÓÉÉÏÊö²åÖµµÃµ½µÄ»úÆ÷ÈËÊµ¼ÊÂ·¾¶£¬µÃµ½ÀíÂÛµÄÏàÎ»ĞòÁĞ
+	//å·¦å¤©çº¿ï¼šç”±ä¸Šè¿°æ’å€¼å¾—åˆ°çš„æœºå™¨äººå®é™…è·¯å¾„ï¼Œå¾—åˆ°ç†è®ºçš„ç›¸ä½åºåˆ—
 	vector<vector<vector<double>>> trackMobileRobotLeftAntennaReal(referenceTagNum, vector<vector<double>>(mymax(referenceTagCountLeft), vector<double>(2)));
 
 	distanceTheory.clear();
@@ -629,66 +636,66 @@ int main()
 				phaseTagTheoryLeft[i][j] = distanceTheory[i][j] * 2 * PI / waveLengthVar[0];
 			}
 
-	//×óÌìÏß£ºĞÅºÅÇ¿¶È·ÖÎö
+	//å·¦å¤©çº¿ï¼šä¿¡å·å¼ºåº¦åˆ†æ
 	vector<vector<int>> RSSI_TagLeft(mymax(referenceTagCountLeft), vector<int>(referenceTagNum));
 	for (int j = 0; j < referenceTagNum; ++j)
 		if (referenceTagCountLeft[j] > 1)
 			for (int i = 0; i < referenceTagCountLeft[j]; ++i)
 				RSSI_TagLeft[i][j] = myDataResultLeft.data.RSSI[referenceTagNumLeft[i][j]];
 
-	//Ö´ĞĞÁ£×ÓÂË²¨¶¨Î»Ëã·¨
+	//æ‰§è¡Œç²’å­æ»¤æ³¢å®šä½ç®—æ³•
 	int PF_Count = 500;
 
-	//Á£×Ó×´Ì¬£¨ÒÆ¶¯»úÆ÷ÈËÎ»×Ë£©£¬µÚÒ»¡¢¶ş¡¢ÈıĞĞÎª»úÆ÷ÈËµÄx y thÖµ
+	//ç²’å­çŠ¶æ€ï¼ˆç§»åŠ¨æœºå™¨äººä½å§¿ï¼‰ï¼Œç¬¬ä¸€ã€äºŒã€ä¸‰è¡Œä¸ºæœºå™¨äººçš„x y thå€¼
 	vector<vector<vector<double>>> PF_ParticleRobot(500, vector<vector<double>>(3, vector<double>(PF_Count)));
-	//Á£×Ó×´Ì¬£¨±ä»»¾ØÕó£©£¬·Ö±ğ¶ÔÓ¦Á½¸öÆ½ÒÆ¡¢Ò»¸öĞı×ª
+	//ç²’å­çŠ¶æ€ï¼ˆå˜æ¢çŸ©é˜µï¼‰ï¼Œåˆ†åˆ«å¯¹åº”ä¸¤ä¸ªå¹³ç§»ã€ä¸€ä¸ªæ—‹è½¬
 	vector<vector<vector<double>>> PF_ParticleTransformation(500, vector<vector<double>>(3, vector<double>(PF_Count)));
-	//Á£×Ó×´Ì¬£¨×óÌìÏßÎ»ÖÃ£©£¬µÚÒ»¡¢¶şĞĞÎª×óÌìÏßµÄx yÖµ
+	//ç²’å­çŠ¶æ€ï¼ˆå·¦å¤©çº¿ä½ç½®ï¼‰ï¼Œç¬¬ä¸€ã€äºŒè¡Œä¸ºå·¦å¤©çº¿çš„x yå€¼
 	vector<vector<vector<double>>> PF_ParticleAntennaLeft(20000, vector<vector<double>>(2, vector<double>(PF_Count)));
-	//Á£×Ó×´Ì¬£¨ÓÒÌìÏßÎ»ÖÃ£©£¬µÚÒ»¡¢¶şĞĞÎªÓÒÌìÏßµÄx yÖµ
+	//ç²’å­çŠ¶æ€ï¼ˆå³å¤©çº¿ä½ç½®ï¼‰ï¼Œç¬¬ä¸€ã€äºŒè¡Œä¸ºå³å¤©çº¿çš„x yå€¼
 	vector<vector<vector<double>>> PF_ParticleAntennaRight(20000, vector<vector<double>>(2, vector<double>(PF_Count)));
 
-	//¹Û²â£º±£´æ×óÌìÏßÁ½¸öÊ±¿ÌÖ®¼äµÄÏàÎ»²îÖµ,ÒÔĞĞÅÅÁĞ
+	//è§‚æµ‹ï¼šä¿å­˜å·¦å¤©çº¿ä¸¤ä¸ªæ—¶åˆ»ä¹‹é—´çš„ç›¸ä½å·®å€¼,ä»¥è¡Œæ’åˆ—
 	vector<double> PF_ObserveGradientLeft(referenceTag.size());
-	//¹Û²â£º±£´æÓÒÌìÏßÁ½¸öÊ±¿ÌÖ®¼äµÄÏàÎ»²îÖµ,ÒÔĞĞÅÅÁĞ
+	//è§‚æµ‹ï¼šä¿å­˜å³å¤©çº¿ä¸¤ä¸ªæ—¶åˆ»ä¹‹é—´çš„ç›¸ä½å·®å€¼,ä»¥è¡Œæ’åˆ—
 	vector<double> PF_ObserveGradientRight(referenceTag.size());
 
-	//Ô¤²â£ºµÚ1ĞĞÊÇ×óÌìÏßÇ°Ò»¸öÊ±¿ÌµãµÄÏàÎ»£¨½â²øÏàÎ»£©£¬µÚ2ĞĞÊÇ×óÌìÏßµ±Ç°Ê±¿ÌµãµÄÏàÎ»£¨½â²øÏàÎ»£©£¬µÚ3Îª×óÌìÏßÁ½¸öÊ±¿ÌÖ®¼äµÄÏàÎ»²îÖµ
+	//é¢„æµ‹ï¼šç¬¬1è¡Œæ˜¯å·¦å¤©çº¿å‰ä¸€ä¸ªæ—¶åˆ»ç‚¹çš„ç›¸ä½ï¼ˆè§£ç¼ ç›¸ä½ï¼‰ï¼Œç¬¬2è¡Œæ˜¯å·¦å¤©çº¿å½“å‰æ—¶åˆ»ç‚¹çš„ç›¸ä½ï¼ˆè§£ç¼ ç›¸ä½ï¼‰ï¼Œç¬¬3ä¸ºå·¦å¤©çº¿ä¸¤ä¸ªæ—¶åˆ»ä¹‹é—´çš„ç›¸ä½å·®å€¼
 	vector<vector<vector<double>>> PF_PredictionLeft(referenceTag.size(), vector<vector<double>>(3, vector<double>(PF_Count)));
-	//Ô¤²â£ºµÚ1ĞĞÊÇÓÒÌìÏßÇ°Ò»¸öÊ±¿ÌµãµÄÏàÎ»£¨½â²øÏàÎ»£©£¬µÚ2ĞĞÊÇÓÒÌìÏßµ±Ç°Ê±¿ÌµãµÄÏàÎ»£¨½â²øÏàÎ»£©£¬µÚ3ÎªÓÒÌìÏßÁ½¸öÊ±¿ÌÖ®¼äµÄÏàÎ»²îÖµ
+	//é¢„æµ‹ï¼šç¬¬1è¡Œæ˜¯å³å¤©çº¿å‰ä¸€ä¸ªæ—¶åˆ»ç‚¹çš„ç›¸ä½ï¼ˆè§£ç¼ ç›¸ä½ï¼‰ï¼Œç¬¬2è¡Œæ˜¯å³å¤©çº¿å½“å‰æ—¶åˆ»ç‚¹çš„ç›¸ä½ï¼ˆè§£ç¼ ç›¸ä½ï¼‰ï¼Œç¬¬3ä¸ºå³å¤©çº¿ä¸¤ä¸ªæ—¶åˆ»ä¹‹é—´çš„ç›¸ä½å·®å€¼
 	vector<vector<vector<double>>> PF_PredictionRight(referenceTag.size(), vector<vector<double>>(3, vector<double>(PF_Count)));
 
-	//µ¥Î»cm
+	//å•ä½cm
 	int gradientLen = 2;
-	//µ¥Î»cm
+	//å•ä½cm
 	int distanceFarThreshold = 200;
-	//Ê±¼äÏŞÖÆ£¬µ¥Î»s
+	//æ—¶é—´é™åˆ¶ï¼Œå•ä½s
 	int gradientTimeLen = 10;
-	//¹ı³ÌÔëÉù£¬±ê×¼²î£¬µ¥Î»cm, rad
+	//è¿‡ç¨‹å™ªå£°ï¼Œæ ‡å‡†å·®ï¼Œå•ä½cm, rad
 	vector<vector<double>> PF_Q = { {3, 0}, {0, 0.1} };
-	//²âÁ¿ÔëÉù£¬·½²î£¬µ¥Î»rad
+	//æµ‹é‡å™ªå£°ï¼Œæ–¹å·®ï¼Œå•ä½rad
 	double PF_R = (PhaseGauss + 0.4) * (PhaseGauss + 0.4);
-	//Á£×ÓÓë¹Û²âÖµÖ®¼äµÄ²î¾à,Ã¿Ò»ĞĞ¶ÔÓ¦Ò»¸ö²Î¿¼±êÇ©
+	//ç²’å­ä¸è§‚æµ‹å€¼ä¹‹é—´çš„å·®è·,æ¯ä¸€è¡Œå¯¹åº”ä¸€ä¸ªå‚è€ƒæ ‡ç­¾
 	vector<vector<double>> PF_DistanceLeft(referenceTag.size(), vector<double>(PF_Count));
-	//Á£×ÓÓë¹Û²âÖµÖ®¼äµÄ²î¾à,Ã¿Ò»ĞĞ¶ÔÓ¦Ò»¸ö²Î¿¼±êÇ©
+	//ç²’å­ä¸è§‚æµ‹å€¼ä¹‹é—´çš„å·®è·,æ¯ä¸€è¡Œå¯¹åº”ä¸€ä¸ªå‚è€ƒæ ‡ç­¾
 	vector<vector<double>> PF_DistanceRight(referenceTag.size(), vector<double>(PF_Count));
-	//Á£×ÓÓë¹Û²âÖµÖ®¼äµÄÈ¨ÖØÒò×Ó£¬µÚÈıĞĞÓÃÓÚ×ÛºÏÆÀ¼Û
+	//ç²’å­ä¸è§‚æµ‹å€¼ä¹‹é—´çš„æƒé‡å› å­ï¼Œç¬¬ä¸‰è¡Œç”¨äºç»¼åˆè¯„ä»·
 	vector<vector<double>> PF_W_Left(referenceTag.size(), vector<double>(PF_Count));
-	//Á£×ÓÓë¹Û²âÖµÖ®¼äµÄÈ¨ÖØÒò×Ó£¬µÚÈıĞĞÓÃÓÚ×ÛºÏÆÀ¼Û
+	//ç²’å­ä¸è§‚æµ‹å€¼ä¹‹é—´çš„æƒé‡å› å­ï¼Œç¬¬ä¸‰è¡Œç”¨äºç»¼åˆè¯„ä»·
 	vector<vector<double>> PF_W_Right(referenceTag.size(), vector<double>(PF_Count));
-	//µÚÒ»ĞĞ£º±¾´Î¹Û²âµÃÈ¨ÖØ£»µÚ¶şĞĞ£º±¾´Î×îÖÕµÄÈ¨ÖØ
+	//ç¬¬ä¸€è¡Œï¼šæœ¬æ¬¡è§‚æµ‹å¾—æƒé‡ï¼›ç¬¬äºŒè¡Œï¼šæœ¬æ¬¡æœ€ç»ˆçš„æƒé‡
 	vector<vector<vector<double>>> PF_W(Times, vector<vector<double>>(2, vector<double>(PF_Count)));
-	//Ğ­·½²î¾ØÕó
+	//åæ–¹å·®çŸ©é˜µ
 	vector<vector<vector<double>>> PF_CenterVar(200, vector<vector<double>>(3, vector<double>(3)));
 	double neffRatioThreshold = 0.6;
 
-	//±êÇ©¿É¶ÁĞÔµÄÏà¹ØÅĞ¶¨Öµ
-	//²»¿É¶ÁµÄ°ë¾¶£¬Ò»¶¨´óÓÚ´ËÖµ
+	//æ ‡ç­¾å¯è¯»æ€§çš„ç›¸å…³åˆ¤å®šå€¼
+	//ä¸å¯è¯»çš„åŠå¾„ï¼Œä¸€å®šå¤§äºæ­¤å€¼
 	int tagUnreadableRadius = 20;
-	//¿É¶ÁµÄ°ë¾¶£¬Ò»¶¨Ğ¡ÓÚ´ËÖµ
+	//å¯è¯»çš„åŠå¾„ï¼Œä¸€å®šå°äºæ­¤å€¼
 	int tagReadableRadius = 110;
 
-	//ÒÆ¶¯»úÆ÷ÈË±¾ÌåµÄÕÚµ²ÇøÓò
+	//ç§»åŠ¨æœºå™¨äººæœ¬ä½“çš„é®æŒ¡åŒºåŸŸ
 	vector<vector<double>> leftShadowUnreadablePointCor = { {120, 20}, {-120, 20}, {-120, -120}, {120, -120} };
 
 	vector<double> leftShadowUnreadablePointH(leftShadowUnreadablePointCor.size());
@@ -729,22 +736,22 @@ int main()
 	for (int i = 0; i < rightShadowReadablePointAlpha.size(); ++i)
 		rightShadowReadablePointAlpha[i] = atan2(rightShadowReadablePointCor[i][1], rightShadowReadablePointCor[i][0]);
 
-	//ÔÚÁ£×Ó³õÊ¼»¯ÖĞ£¬PF_tag_readable_count
+	//åœ¨ç²’å­åˆå§‹åŒ–ä¸­ï¼ŒPF_tag_readable_count
 	int PF_TagReadableCountInit = 5;
-	//ÔÚÁ£×ÓÂË²¨¸üĞÂÖĞ£¬±êÇ©¿É¶ÁĞÔĞèÒªÅĞ¶ÏµÄÖÜÎ§µÄ±êÇ©ÊıÁ¿
+	//åœ¨ç²’å­æ»¤æ³¢æ›´æ–°ä¸­ï¼Œæ ‡ç­¾å¯è¯»æ€§éœ€è¦åˆ¤æ–­çš„å‘¨å›´çš„æ ‡ç­¾æ•°é‡
 	int PF_TagReadableCount = 5;
-	//ÔÚÁ£×ÓÂË²¨ÖĞ£¬Êı¾İ¶Î³¤¶ÈµÄÏÂ½ç
+	//åœ¨ç²’å­æ»¤æ³¢ä¸­ï¼Œæ•°æ®æ®µé•¿åº¦çš„ä¸‹ç•Œ
 	int distanceIntervalLp = 1;
 
-	//ÎªÁË½µµÍÖØ²ÉÑùµÄÆµÂÊ
+	//ä¸ºäº†é™ä½é‡é‡‡æ ·çš„é¢‘ç‡
 	double recoveryAlphaSlow = 0.001; //0.05
 	double recoveryAlphaFast = 0.2;	  //0.2
 	int PF_W_Slow = 0;
 	int PF_W_Fast = 0;
 
-	//ÓÒÌìÏßµÄ±êºÅ£¬Îª·½±ãË÷Òı¹Ê¼õÒ»
+	//å³å¤©çº¿çš„æ ‡å·ï¼Œä¸ºæ–¹ä¾¿ç´¢å¼•æ•…å‡ä¸€
 	int numberFlag = 0;
-	//×óÌìÏßµÄ±êºÅ£¬Îª·½±ãË÷Òı¹Ê¼õÒ»
+	//å·¦å¤©çº¿çš„æ ‡å·ï¼Œä¸ºæ–¹ä¾¿ç´¢å¼•æ•…å‡ä¸€
 	int numberFlagVice = 0;
 
 	vector<vector<double>> PF_ObserveNativeLeft = phasePsoLeft;
@@ -777,7 +784,7 @@ int main()
 	vector<int> PF_ReSample(Times);
 	vector<double> time(Times);
 
-	/*ÑéÖ¤Êı¾İµ¼Èë£ºËæ»úÊı*/
+	/*éªŒè¯æ•°æ®å¯¼å…¥ï¼šéšæœºæ•°*/
 	//vector<double> randNum(Times);
 	//vector<vector<vector<double>>> ran(Times, vector<vector<double>>(3, vector<double>(PF_Count)));
 	//MATFile* pM0 = matOpen("E:/MATLAB workspace/hgdw/test400.mat", "r");
@@ -796,7 +803,7 @@ int main()
 	//	}
 	//	randNum[i] = temp2[i];
 	//}
-	/*******¼ì²â******/
+	/*******æ£€æµ‹******/
 
 	for (int i = 0; i < Times; ++i)
 	{
@@ -811,14 +818,14 @@ int main()
 			robotPositionAssume[1][i] = robotYtAssume[i];
 			robotPositionAssume[2][i] = 1;
 
-			//ÕÒµ½¾²Ö¹Ìõ¼şÏÂ£¬ËùÄÜ¹»¶Áµ½µÄ±êÇ©£¬²¢ÒÀ¾İÕâĞ©±êÇ©µÄ×ø±ê£¬Ö±½Ó¶ÔÁ£×Ó½øĞĞ³õÊ¼»¯
-			//ÓÒÌìÏß
+			//æ‰¾åˆ°é™æ­¢æ¡ä»¶ä¸‹ï¼Œæ‰€èƒ½å¤Ÿè¯»åˆ°çš„æ ‡ç­¾ï¼Œå¹¶ä¾æ®è¿™äº›æ ‡ç­¾çš„åæ ‡ï¼Œç›´æ¥å¯¹ç²’å­è¿›è¡Œåˆå§‹åŒ–
+			//å³å¤©çº¿
 			epcDataRight.clear();
 			epcDataRight.resize(odometerRightStartPoint);
 			for (int j = 0; j < odometerRightStartPoint; ++j)
 				epcDataRight[j] = myDataResultRight.textData.epcData[j];
 
-			//ÓÃÍê¾ÍÈÓ
+			//ç”¨å®Œå°±æ‰”
 			vector<double> RSSI_DataRightCurrent(odometerRightStartPoint);
 			for (int j = 0; j < odometerRightStartPoint; ++j)
 				RSSI_DataRightCurrent[j] = myDataResultRight.data.RSSI[j];
@@ -828,31 +835,31 @@ int main()
 				for (int k = 0; k < referenceTagNum; ++k)
 					if ((referenceTag_EPC[k] == epcDataRight[j]) && (RSSI_DataRightCurrent[j] >= -53))
 					{
-						//ÊıÁ¿¼Ó1
+						//æ•°é‡åŠ 1
 						++referenceTagCountRightCurrent[k];
 						break;
 					}
 
-			//Í³¼ÆreferenceTagCountRightCurrentÖĞ·ÇÁãÔªËØ¸öÊı
+			//ç»Ÿè®¡referenceTagCountRightCurrentä¸­éé›¶å…ƒç´ ä¸ªæ•°
 			int count = 0;
 			for (auto x : referenceTagCountRightCurrent)
 				if (x)
 					++count;
 			readableTagRightNum[i] = count;
 
-			//ÁĞÊı¾ÍÊÇ±êÇ©µÄÎ»ÖÃ
+			//åˆ—æ•°å°±æ˜¯æ ‡ç­¾çš„ä½ç½®
 			vector<int> colRight;
 			for (auto it = referenceTagCountRightCurrent.begin(); it != referenceTagCountRightCurrent.end(); ++it)
 				if (*it)
 					colRight.push_back(it - referenceTagCountRightCurrent.begin());
 
-			//×óÌìÏß
+			//å·¦å¤©çº¿
 			epcDataLeft.clear();
 			epcDataLeft.resize(odometerLeftStartPoint);
 			for (int j = 0; j < odometerLeftStartPoint; ++j)
 				epcDataLeft[j] = myDataResultLeft.textData.epcData[j];
 
-			//ÓÃÍê¾ÍÈÓ
+			//ç”¨å®Œå°±æ‰”
 			vector<double> RSSI_DataLeftCurrent(odometerLeftStartPoint);
 			for (int j = 0; j < odometerLeftStartPoint; ++j)
 				RSSI_DataLeftCurrent[j] = myDataResultLeft.data.RSSI[j];
@@ -866,13 +873,13 @@ int main()
 						break;
 					}
 
-			//ÁĞÊı¾ÍÊÇ±êÇ©µÄÎ»ÖÃ
+			//åˆ—æ•°å°±æ˜¯æ ‡ç­¾çš„ä½ç½®
 			vector<int> colLeft;
 			for (auto it = referenceTagCountLeftCurrent.begin(); it != referenceTagCountLeftCurrent.end(); ++it)
 				if (*it)
 					colLeft.push_back(it - referenceTagCountLeftCurrent.begin());
 
-			//ÉÔÎ¢ÓĞµã·±ËöÁË
+			//ç¨å¾®æœ‰ç‚¹ç¹çäº†
 			vector<int> randData(4);
 			vector<vector<double>> PF_Scope(2, vector<double>(2));
 			double leftMax = referenceTag[colLeft[0]][0];
@@ -904,30 +911,30 @@ int main()
 				rightMin = min(rightMin, referenceTag[x][1]);
 			PF_Scope[1][1] = min(leftMin, rightMin) + 160 + randData[3];
 
-			//ÒÀ¾İ¸Ã·¶Î§£¬Éú³ÉÁ£×Ó
+			//ä¾æ®è¯¥èŒƒå›´ï¼Œç”Ÿæˆç²’å­
 			for (int j = 0; j < PF_Count; ++j)
 			{
-				//Á£×Óx×ø±ê
+				//ç²’å­xåæ ‡
 				PF_ParticleRobot[i][0][j] = PF_Scope[0][0] + rand() / double(RAND_MAX) * (PF_Scope[0][1] - PF_Scope[0][0]);
-				//Á£×Óy×ø±ê
+				//ç²’å­yåæ ‡
 				PF_ParticleRobot[i][1][j] = PF_Scope[1][0] + rand() / double(RAND_MAX) * (PF_Scope[1][1] - PF_Scope[1][0]);
-				//Á£×Ó·½Ïò
+				//ç²’å­æ–¹å‘
 				PF_ParticleRobot[i][2][j] = (-PI) + rand() / double(RAND_MAX) * (PI - (-PI));
 			}
 
-			/*ÑéÖ¤Êı¾İµ¼Èë*/
+			/*éªŒè¯æ•°æ®å¯¼å…¥*/
 			//for (int j = 0; j < PF_Count; ++j)
 			//{
-			//	//Á£×Óx×ø±ê
+			//	//ç²’å­xåæ ‡
 			//	PF_ParticleRobot[i][0][j] = PF_Scope[0][0] + (PF_Scope[0][1] - PF_Scope[0][0]) * ran[i][0][j];
-			//	//Á£×Óy×ø±ê
+			//	//ç²’å­yåæ ‡
 			//	PF_ParticleRobot[i][1][j] = PF_Scope[1][0] + (PF_Scope[1][1] - PF_Scope[1][0]) * ran[i][1][j];
-			//	//Á£×Ó·½Ïò
+			//	//ç²’å­æ–¹å‘
 			//	PF_ParticleRobot[i][2][j] = (-PI) + (PI - (-PI)) * ran[i][2][j];
 			//}
-			/********ÑéÖ¤********/
+			/********éªŒè¯********/
 
-			//»úÆ÷ÈËÎ»×ËËù¶ÔÓ¦µÄÌìÏßµÄÎ»ÖÃ
+			//æœºå™¨äººä½å§¿æ‰€å¯¹åº”çš„å¤©çº¿çš„ä½ç½®
 			for (int j = 0; j < PF_Count; ++j)
 			{
 				PF_ParticleAntennaLeft[i][0][j] = PF_ParticleRobot[i][0][j] - antennaHLeftError * cos(PI - antennaAlphaLeftError - PF_ParticleRobot[i][2][j]);
@@ -942,7 +949,7 @@ int main()
 			for (int j = 0; j < PF_Count; ++j)
 				PF_W[i][1][j] = 1 / double(PF_Count);
 
-			//x y×ø±êµÄ¾ùÖµ¼°ÆäĞ­·½²î
+			//x yåæ ‡çš„å‡å€¼åŠå…¶åæ–¹å·®
 			for (int j = 0; j < 2; ++j)
 				for (int k = 0; k < PF_Count; ++k)
 					PF_CenterMean[j][i] += PF_ParticleRobot[i][j][k] * PF_W[i][1][k];
@@ -969,7 +976,7 @@ int main()
 					PF_CenterVar[i][j][k] *= factor;
 				}
 
-			//½Ç¶È¾ùÖµ¼°Ğ­·½²î£º
+			//è§’åº¦å‡å€¼åŠåæ–¹å·®ï¼š
 			double sinsum = 0;
 			for (int j = 0; j < PF_Count; ++j)
 				sinsum += PF_W[i][1][j] * sin(PF_ParticleRobot[i][2][j]);
@@ -984,7 +991,7 @@ int main()
 			for (int j = 0; j < PF_Count; ++j)
 				PF_CenterMean[3][i] += PF_ParticleRobot[i][2][j] * PF_W[i][1][j];
 
-			//¶¨Î»Îó²î
+			//å®šä½è¯¯å·®
 			robotXt[i] = mobileRobotPoseVisionRight[numberFlag][0];
 			robotYt[i] = mobileRobotPoseVisionRight[numberFlag][1];
 			robotTht[i] = mobileRobotPoseVisionRight[numberFlag][2];
@@ -1005,23 +1012,23 @@ int main()
 			numberFlagRight[0].assign(referenceTagNum, -1);
 			numberFlagRight[1].assign(referenceTagNum, -1);
 
-			//»æÍ¼
+			//ç»˜å›¾
 			// 	 figure
-			// h1 = plot(reference_tag(:,1), reference_tag(:,2), 'k.', 'markersize',25);  %ÏµÍ³×´Ì¬Î»ÖÃ
+			// h1 = plot(reference_tag(:,1), reference_tag(:,2), 'k.', 'markersize',25);  %ç³»ç»ŸçŠ¶æ€ä½ç½®
 			// hold on
-			// h2 = plot(robot_xt(1:i),robot_yt(1:i),'r.', 'markersize',50);%»úÆ÷ÈËµÄÎ»ÖÃ
+			// h2 = plot(robot_xt(1:i),robot_yt(1:i),'r.', 'markersize',50);%æœºå™¨äººçš„ä½ç½®
 			// h3 = plot(PF_particle_robot(1, :, i), PF_particle_robot(2, :, i),'.','markersize',10);
 			// h4 = quiver(robot_xt(1:i),robot_yt(1:i), cos(robot_tht(i)), sin(robot_tht(i)),15, 'color', 'r', 'linewidth', 3);
 			// h5 = quiver(PF_particle_robot(1, :, i), PF_particle_robot(2, :, i), cos(PF_particle_robot(3, :, i)), sin(PF_particle_robot(3, :, i)),0.3, 'color', 'c', 'linewidth', 3);
-			// legend('²Î¿¼±êÇ©ÕóÁĞ', 'ÒÆ¶¯»úÆ÷ÈËÕæÊµÎ»×Ë','ÒÆ¶¯»úÆ÷ÈË¿ÉÄÜÎ»×Ë');
+			// legend('å‚è€ƒæ ‡ç­¾é˜µåˆ—', 'ç§»åŠ¨æœºå™¨äººçœŸå®ä½å§¿','ç§»åŠ¨æœºå™¨äººå¯èƒ½ä½å§¿');
 			// set(gca,'child',[h2 h4 h3 h5 h1])
 			// xlabel('x (cm)');ylabel('y (cm)');
-			// legend('²Î¿¼±êÇ©ÕóÁĞ', 'ÒÆ¶¯»úÆ÷ÈËÕæÊµÎ»×Ë','ÒÆ¶¯»úÆ÷ÈË¿ÉÄÜÎ»×Ë');
+			// legend('å‚è€ƒæ ‡ç­¾é˜µåˆ—', 'ç§»åŠ¨æœºå™¨äººçœŸå®ä½å§¿','ç§»åŠ¨æœºå™¨äººå¯èƒ½ä½å§¿');
 
 			// figure
-			// h1 = plot(reference_tag(:,1), reference_tag(:,2), 'k.', 'marker', 'pentagram', 'markersize', 10);  %ÏµÍ³×´Ì¬Î»ÖÃ
+			// h1 = plot(reference_tag(:,1), reference_tag(:,2), 'k.', 'marker', 'pentagram', 'markersize', 10);  %ç³»ç»ŸçŠ¶æ€ä½ç½®
 			// hold on
-			// h2 = plot(robot_xt(1:1),robot_yt(1:1),'r.', 'markersize',35);%»úÆ÷ÈËµÄÎ»ÖÃ
+			// h2 = plot(robot_xt(1:1),robot_yt(1:1),'r.', 'markersize',35);%æœºå™¨äººçš„ä½ç½®
 			// h3 = plot(PF_particle_robot(1, :, 1), PF_particle_robot(2, :, 1),'.','markersize',15);
 			// h4 = quiver(robot_xt(1:1),robot_yt(1:1), cos(robot_tht(1)), sin(robot_tht(1)),3, 'color', 'r', 'linewidth', 3,'MaxHeadSize',5);
 			// h5 = quiver(PF_particle_robot(1, :, 1), PF_particle_robot(2, :, 1), cos(PF_particle_robot(3, :, 1)), sin(PF_particle_robot(3, :, 1)),0.3, 'color', 'c', 'linewidth', 3);
@@ -1047,10 +1054,10 @@ int main()
 						break;
 				}
 				else
-					//Ìø³öµ±Ç°Ñ­»·
+					//è·³å‡ºå½“å‰å¾ªç¯
 					break;
 			}
-			//Ìø³ö´óÑ­»·
+			//è·³å‡ºå¤§å¾ªç¯
 			if (numberFlag >= myDataResultRight.data.readerTime.size())
 				break;
 
@@ -1062,7 +1069,7 @@ int main()
 			robotPositionAssume[1][i] = robotYtAssume[i];
 			robotPositionAssume[2][i] = 1;
 
-			//×´Ì¬×ªÒÆ£ºÔ¤²â
+			//çŠ¶æ€è½¬ç§»ï¼šé¢„æµ‹
 			double robotXtDiff = robotXtAssume[i] - robotXtAssume[i - 1];
 			double robotYtDiff = robotYtAssume[i] - robotYtAssume[i - 1];
 			double robotThtDiff = robotThtAssume[i] - robotThtAssume[i - 1];
@@ -1072,7 +1079,7 @@ int main()
 			positionDifference1[1] = robotXtDiff * sin(-robotThtAssume[i - 1]) + robotYtDiff * cos(-robotThtAssume[i - 1]);
 
 			vector<vector<double>> positionDifference2(2, vector<double>(PF_Count));
-			//²ğ¿ªÀ´Ğ´±È½Ï½²¾¿¡£¡£¡£
+			//æ‹†å¼€æ¥å†™æ¯”è¾ƒè®²ç©¶ã€‚ã€‚ã€‚
 			for (int j = 0; j < PF_Count; ++j)
 			{
 				positionDifference2[0][j] = positionDifference1[0] * cos(PF_ParticleRobot[i - 1][2][j]) - positionDifference1[1] * sin(PF_ParticleRobot[i - 1][2][j]);
@@ -1086,25 +1093,25 @@ int main()
 				PF_ParticleRobot[i][2][j] = PF_ParticleRobot[i - 1][2][j] + robotThtDiff + gaussrand(0, PF_Q[1][1]);
 			}
 
-			/*ÑéÖ¤Êı¾İµ¼Èë*/
+			/*éªŒè¯æ•°æ®å¯¼å…¥*/
 			//for (int j = 0; j < PF_Count; ++j)
 			//{
-			//	//Á£×Óx×ø±ê
+			//	//ç²’å­xåæ ‡
 			//	PF_ParticleRobot[i][0][j] = PF_ParticleRobot[i - 1][0][j] + positionDifference2[0][j] + ran[i][0][j];
-			//	//Á£×Óy×ø±ê
+			//	//ç²’å­yåæ ‡
 			//	PF_ParticleRobot[i][1][j] = PF_ParticleRobot[i - 1][1][j] + positionDifference2[1][j] + ran[i][1][j];
-			//	//Á£×Ó·½Ïò
+			//	//ç²’å­æ–¹å‘
 			//	PF_ParticleRobot[i][2][j] = PF_ParticleRobot[i - 1][2][j] + robotThtDiff + ran[i][2][j];
 			//}
-			/********ÑéÖ¤********/
+			/********éªŒè¯********/
 
-			//ÓÒÌìÏß
+			//å³å¤©çº¿
 			epcDataRight.clear();
 			epcDataRight.resize(numberFlag - numberFlagPre);
 			for (int j = 0; j < (numberFlag - numberFlagPre); ++j)
 				epcDataRight[j] = myDataResultRight.textData.epcData[numberFlagPre + 1 + j];
 
-			//ÓÃÍê¾ÍÈÓ
+			//ç”¨å®Œå°±æ‰”
 			vector<double> RSSI_DataRightCurrent(numberFlag - numberFlagPre);
 			for (int j = 0; j < (numberFlag - numberFlagPre); ++j)
 				RSSI_DataRightCurrent[j] = myDataResultRight.data.RSSI[numberFlagPre + 1 + j];
@@ -1114,35 +1121,35 @@ int main()
 				for (int k = 0; k < referenceTagNum; ++k)
 					if ((referenceTag_EPC[k] == epcDataRight[j]) && (RSSI_DataRightCurrent[j] >= -52))
 					{
-						//ÊıÁ¿¼Ó1
+						//æ•°é‡åŠ 1
 						++referenceTagCountRightCurrent[k];
 						break;
 					}
 
-			//Í³¼ÆreferenceTagCountRightCurrentÖĞ·ÇÁãÔªËØ¸öÊı
+			//ç»Ÿè®¡referenceTagCountRightCurrentä¸­éé›¶å…ƒç´ ä¸ªæ•°
 			int count = 0;
 			for (auto x : referenceTagCountRightCurrent)
 				if (x)
 					++count;
 			readableTagRightNum[i] = count;
 
-			//×óÌìÏß
+			//å·¦å¤©çº¿
 			int numberFlagVicePre = numberFlagVice;
 
-			//Ñ°ÕÒÂú×ãÌõ¼şµÄË÷Òı²¢¸½´øÉÏ0£¬È»ºóÑ°ÕÒ×î´óÖµ¡£
+			//å¯»æ‰¾æ»¡è¶³æ¡ä»¶çš„ç´¢å¼•å¹¶é™„å¸¦ä¸Š0ï¼Œç„¶åå¯»æ‰¾æœ€å¤§å€¼ã€‚
 			int m;
 			for (auto it = myDataResultLeft.data.readerTime.begin(); it != myDataResultLeft.data.readerTime.end(); ++it)
 				if ((*it) < myDataResultRight.data.readerTime[numberFlag])
 					m = it - myDataResultLeft.data.readerTime.begin();
 			numberFlagVice = (m > 0) ? m : 0;
 
-			//×óÌìÏß
+			//å·¦å¤©çº¿
 			epcDataLeft.clear();
 			epcDataLeft.resize(numberFlagVice - numberFlagVicePre);
 			for (int j = 0; j < (numberFlagVice - numberFlagVicePre); ++j)
 				epcDataLeft[j] = myDataResultLeft.textData.epcData[numberFlagVicePre + 1 + j];
 
-			//ÓÃÍê¾ÍÈÓ
+			//ç”¨å®Œå°±æ‰”
 			vector<double> RSSI_DataLeftCurrent(numberFlagVice - numberFlagVicePre);
 			for (int j = 0; j < (numberFlagVice - numberFlagVicePre); ++j)
 				RSSI_DataLeftCurrent[j] = myDataResultLeft.data.RSSI[numberFlagVicePre + 1 + j];
@@ -1152,23 +1159,23 @@ int main()
 				for (int k = 0; k < referenceTagNum; ++k)
 					if ((referenceTag_EPC[k] == epcDataLeft[j]) && (RSSI_DataLeftCurrent[j] >= -52))
 					{
-						//ÊıÁ¿¼Ó1
+						//æ•°é‡åŠ 1
 						++referenceTagCountLeftCurrent[k];
 						break;
 					}
 
-			//Í³¼ÆreferenceTagCountRightCurrentÖĞ·ÇÁãÔªËØ¸öÊı
+			//ç»Ÿè®¡referenceTagCountRightCurrentä¸­éé›¶å…ƒç´ ä¸ªæ•°
 			count = 0;
 			for (auto x : referenceTagCountLeftCurrent)
 				if (x)
 					++count;
 			readableTagLeftNum[i] = count;
 
-			//ÀûÓÃĞÂ±êÇ©µÄ¿É¶ÁĞÔ£¬¶ÔÁ£×Ó½øĞĞ³õ²½É¸Ñ¡--²»·ûºÏ¿É¶ÁĞÔµÄ£¬È¨ÖØ±äÎª0
-			//Ñ°ÕÒÖ¸¶¨·¶Î§ÄÚµÄ×î´óÖµÒÔ¼°Ë÷Òı
-			//×î´óÖµ
+			//åˆ©ç”¨æ–°æ ‡ç­¾çš„å¯è¯»æ€§ï¼Œå¯¹ç²’å­è¿›è¡Œåˆæ­¥ç­›é€‰--ä¸ç¬¦åˆå¯è¯»æ€§çš„ï¼Œæƒé‡å˜ä¸º0
+			//å¯»æ‰¾æŒ‡å®šèŒƒå›´å†…çš„æœ€å¤§å€¼ä»¥åŠç´¢å¼•
+			//æœ€å¤§å€¼
 			int RSSI_LeftMaxIndex = myDataResultLeft.data.RSSI[numberFlagVicePre + 1];
-			//×î´óÖµÔÚÖ¸¶¨·¶Î§ÄÚµÄË÷Òı
+			//æœ€å¤§å€¼åœ¨æŒ‡å®šèŒƒå›´å†…çš„ç´¢å¼•
 			int I_Left = 0;
 			for (int j = numberFlagVicePre + 1; j < numberFlagVice; ++j)
 				if (myDataResultLeft.data.RSSI[j] > RSSI_LeftMaxIndex)
@@ -1177,7 +1184,7 @@ int main()
 					I_Left = j - numberFlagVicePre - 1;
 				}
 
-			//Ñ°ÕÒÏàµÈ²¢¼ÇÂ¼ĞĞÓëÁĞµÄĞÅÏ¢
+			//å¯»æ‰¾ç›¸ç­‰å¹¶è®°å½•è¡Œä¸åˆ—çš„ä¿¡æ¯
 			int rowLeft = 0;
 			int colLeft = 0;
 			for (int j = 0; j < referenceTagNumLeft.size(); ++j)
@@ -1188,15 +1195,15 @@ int main()
 						colLeft = k;
 					}
 
-			//ÊµÏÖk-ÁÙ½üËã·¨ ¼ò»¯ÎªÒ»¸öº¯Êı
-			//ÕÒµ½ÀëRSSI×î´óµÄµãµÄ×î½üµÄ9¸ö²Î¿¼±êÇ©
+			//å®ç°k-ä¸´è¿‘ç®—æ³• ç®€åŒ–ä¸ºä¸€ä¸ªå‡½æ•°
+			//æ‰¾åˆ°ç¦»RSSIæœ€å¤§çš„ç‚¹çš„æœ€è¿‘çš„9ä¸ªå‚è€ƒæ ‡ç­¾
 			vector<int> optionalTagLeftFlag = knnsearch(referenceTag, referenceTag[colLeft], PF_TagReadableCount);
 
-			//ÕÒ³öÓÒÌìÏßÖĞÌ½Ñ°µÄÈô¸É¸öµã
-			//Ñ°ÕÒÖ¸¶¨·¶Î§ÄÚµÄ×î´óÖµÒÔ¼°Ë÷Òı
-			//×î´óÖµ
+			//æ‰¾å‡ºå³å¤©çº¿ä¸­æ¢å¯»çš„è‹¥å¹²ä¸ªç‚¹
+			//å¯»æ‰¾æŒ‡å®šèŒƒå›´å†…çš„æœ€å¤§å€¼ä»¥åŠç´¢å¼•
+			//æœ€å¤§å€¼
 			int RSSI_RightMaxIndex = myDataResultRight.data.RSSI[numberFlagPre + 1];
-			//×î´óÖµÔÚÖ¸¶¨·¶Î§ÄÚµÄË÷Òı
+			//æœ€å¤§å€¼åœ¨æŒ‡å®šèŒƒå›´å†…çš„ç´¢å¼•
 			int I_Right = 0;
 			for (int j = numberFlagPre + 1; j < numberFlag; ++j)
 				if (myDataResultRight.data.RSSI[j] > RSSI_RightMaxIndex)
@@ -1205,7 +1212,7 @@ int main()
 					I_Right = j - numberFlagPre - 1;
 				}
 
-			//Ñ°ÕÒÏàµÈ²¢¼ÇÂ¼ĞĞÓëÁĞµÄĞÅÏ¢
+			//å¯»æ‰¾ç›¸ç­‰å¹¶è®°å½•è¡Œä¸åˆ—çš„ä¿¡æ¯
 			int rowRight = 0;
 			int colRight = 0;
 			for (int j = 0; j < referenceTagNumRight.size(); ++j)
@@ -1216,10 +1223,10 @@ int main()
 						colRight = k;
 					}
 
-			//ÕÒµ½ÀëRSSI×î´óµÄµãµÄ×î½üµÄ9¸ö²Î¿¼±êÇ©
+			//æ‰¾åˆ°ç¦»RSSIæœ€å¤§çš„ç‚¹çš„æœ€è¿‘çš„9ä¸ªå‚è€ƒæ ‡ç­¾
 			vector<int> optionalTagRightFlag = knnsearch(referenceTag, referenceTag[colRight], PF_TagReadableCount);
 
-			//ËùÌ½Ñ°µÄ9¸ö±êÇ©µÄ¿É¶ÁĞÔ
+			//æ‰€æ¢å¯»çš„9ä¸ªæ ‡ç­¾çš„å¯è¯»æ€§
 			vector<bool> leftTagReadFlag(PF_TagReadableCount);
 			for (int j = 0; j < PF_TagReadableCount; ++j)
 				leftTagReadFlag[j] = (referenceTagCountLeft[optionalTagLeftFlag[j]] > 1) && (referenceTagCountLeftCurrent[optionalTagLeftFlag[j]] > 0);
@@ -1227,7 +1234,7 @@ int main()
 			for (int j = 0; j < PF_TagReadableCount; ++j)
 				rightTagReadFlag[j] = (referenceTagCountRight[optionalTagRightFlag[j]] > 1) && (referenceTagCountRightCurrent[optionalTagRightFlag[j]] > 0);
 
-			//¼ÆËãµ±Ç°Î»×ËÏÂ£¬×óÓÒÌìÏßºÍÒõÓ°¿ØÖÆµãÎ»ÖÃ
+			//è®¡ç®—å½“å‰ä½å§¿ä¸‹ï¼Œå·¦å³å¤©çº¿å’Œé˜´å½±æ§åˆ¶ç‚¹ä½ç½®
 			vector<vector<double>> PF_ParticleAntennaLeftCurrent(2, vector<double>(PF_Count));
 			vector<vector<double>> PF_ParticleAntennaRightCurrent(2, vector<double>(PF_Count));
 			for (int j = 0; j < PF_Count; ++j)
@@ -1256,10 +1263,10 @@ int main()
 					PF_ParticleShadowRightCurrent[k][3] = PF_ParticleRobot[i][1][j] + rightShadowReadablePointH[k] * sin(rightShadowReadablePointAlpha[k] + PF_ParticleRobot[i][2][j]);
 				}
 
-				//Öğ¸ö±êÇ©È·¶¨ÊÇ·ñµ±Ç°µÄÒÆ¶¯»úÆ÷ÈËÎ»×ËÊÇ·ñ·ûºÏÒªÇó
+				//é€ä¸ªæ ‡ç­¾ç¡®å®šæ˜¯å¦å½“å‰çš„ç§»åŠ¨æœºå™¨äººä½å§¿æ˜¯å¦ç¬¦åˆè¦æ±‚
 				vector<bool> optionalFlag(PF_TagReadableCount);
 
-				//²Î¿¼±êÇ©ÓëÌìÏßµÄ¾àÀë
+				//å‚è€ƒæ ‡ç­¾ä¸å¤©çº¿çš„è·ç¦»
 				vector<double> leftDistanceThresholdFlag(PF_TagReadableCount);
 				vector<double> rightDistanceThresholdFlag(PF_TagReadableCount);
 				for (int k = 0; k < PF_TagReadableCount; ++k)
@@ -1268,8 +1275,8 @@ int main()
 					rightDistanceThresholdFlag[k] = sqrt(pow((referenceTag[optionalTagRightFlag[k]][0] - PF_ParticleAntennaRightCurrent[0][j]), 2) + pow((referenceTag[optionalTagRightFlag[k]][1] - PF_ParticleAntennaRightCurrent[1][j]), 2));
 				}
 
-				//²Î¿¼±êÇ©ÓëÒõÓ°ÇøµÄ¹ØÏµ
-				//²Î¿¼±êÇ©ÊÇ·ñÔÚÒõÓ°ÇøÄÚ
+				//å‚è€ƒæ ‡ç­¾ä¸é˜´å½±åŒºçš„å…³ç³»
+				//å‚è€ƒæ ‡ç­¾æ˜¯å¦åœ¨é˜´å½±åŒºå†…
 				vector<double> xPointLeft(PF_TagReadableCount);
 				vector<double> yPointLeft(PF_TagReadableCount);
 				for (int k = 0; k < PF_TagReadableCount; ++k)
@@ -1286,7 +1293,7 @@ int main()
 				}
 				vector<bool> leftInpolygonReadableFlag = inpolygon(xPointLeft, yPointLeft, xLineLeft, yLineLeft);
 
-				//²Î¿¼±êÇ©ÊÇ·ñÔÚÒõÓ°ÇøÄÚ
+				//å‚è€ƒæ ‡ç­¾æ˜¯å¦åœ¨é˜´å½±åŒºå†…
 				vector<double> xPointRight(PF_TagReadableCount);
 				vector<double> yPointRight(PF_TagReadableCount);
 				for (int k = 0; k < PF_TagReadableCount; ++k)
@@ -1304,44 +1311,44 @@ int main()
 				vector<bool> rightInpolygonReadableFlag = inpolygon(xPointRight, yPointRight, xLineRight, yLineRight);
 
 				for (int k = 0; k < PF_TagReadableCount; ++k)
-					//×óÓÒÌìÏß¶¼Î´¶Áµ½
+					//å·¦å³å¤©çº¿éƒ½æœªè¯»åˆ°
 					if ((leftTagReadFlag[k] == 0) && (rightTagReadFlag[k] == 0))
 					{
-						//¾àÀë´óÓÚãĞÖµ£¬»òÕß ÔÚÒõÓ°ÇøÄÚ|| left_inpolygon_unreadable_flag(k) == 1
+						//è·ç¦»å¤§äºé˜ˆå€¼ï¼Œæˆ–è€… åœ¨é˜´å½±åŒºå†…|| left_inpolygon_unreadable_flag(k) == 1
 						if (leftDistanceThresholdFlag[k] > tagUnreadableRadius)
-							//¾àÀë´óÓÚãĞÖµ£¬»òÕß ÔÚÒõÓ°ÇøÄÚ|| right_inpolygon_unreadable_flag(k) == 1
+							//è·ç¦»å¤§äºé˜ˆå€¼ï¼Œæˆ–è€… åœ¨é˜´å½±åŒºå†…|| right_inpolygon_unreadable_flag(k) == 1
 							if (rightDistanceThresholdFlag[k] > tagUnreadableRadius)
 								optionalFlag[k] = 1;
 					}
-				//×óÌìÏß¶Áµ½£¬ÓÒÌìÏßÎ´¶Áµ½
+				//å·¦å¤©çº¿è¯»åˆ°ï¼Œå³å¤©çº¿æœªè¯»åˆ°
 					else if ((leftTagReadFlag[k] == 1) && (rightTagReadFlag[k] == 0))
 					{
-						//¾àÀëĞ¡ÓÚãĞÖµ£¬²¢ÇÒ ²»ÔÚÒõÓ°ÇøÄÚ
+						//è·ç¦»å°äºé˜ˆå€¼ï¼Œå¹¶ä¸” ä¸åœ¨é˜´å½±åŒºå†…
 						if ((leftDistanceThresholdFlag[k] < tagReadableRadius) && (leftInpolygonReadableFlag[k] == 0))
-							//¾àÀë´óÓÚãĞÖµ£¬»òÕß ÔÚÒõÓ°ÇøÄÚ|| right_inpolygon_unreadable_flag(k) == 1
+							//è·ç¦»å¤§äºé˜ˆå€¼ï¼Œæˆ–è€… åœ¨é˜´å½±åŒºå†…|| right_inpolygon_unreadable_flag(k) == 1
 							if (rightDistanceThresholdFlag[k] > tagUnreadableRadius)
 								optionalFlag[k] = 1;
 					}
-				//×óÌìÏßÎ´¶Áµ½£¬ÓÒÌìÏß¶Áµ½
+				//å·¦å¤©çº¿æœªè¯»åˆ°ï¼Œå³å¤©çº¿è¯»åˆ°
 					else if ((leftTagReadFlag[k] == 0) && (rightTagReadFlag[k] == 1))
 					{
-						//¾àÀë´óÓÚãĞÖµ£¬»òÕß ÔÚÒõÓ°ÇøÄÚ|| left_inpolygon_unreadable_flag(k) == 1
+						//è·ç¦»å¤§äºé˜ˆå€¼ï¼Œæˆ–è€… åœ¨é˜´å½±åŒºå†…|| left_inpolygon_unreadable_flag(k) == 1
 						if (leftDistanceThresholdFlag[k] > tagUnreadableRadius)
-							//¾àÀëĞ¡ÓÚãĞÖµ£¬²¢ÇÒ ²»ÔÚÒõÓ°ÇøÄÚ
+							//è·ç¦»å°äºé˜ˆå€¼ï¼Œå¹¶ä¸” ä¸åœ¨é˜´å½±åŒºå†…
 							if ((rightDistanceThresholdFlag[k] < tagReadableRadius) && (rightInpolygonReadableFlag[k] == 0))
 								optionalFlag[k] = 1;
 					}
-				//×óÓÒÌìÏß¶¼¶Áµ½
+				//å·¦å³å¤©çº¿éƒ½è¯»åˆ°
 					else if ((leftTagReadFlag[k] == 1) && (rightTagReadFlag[k] == 1))
 					{
-						//¾àÀëĞ¡ÓÚãĞÖµ£¬²¢ÇÒ ²»ÔÙÒõÓ°ÇøÄÚ
+						//è·ç¦»å°äºé˜ˆå€¼ï¼Œå¹¶ä¸” ä¸å†é˜´å½±åŒºå†…
 						if ((leftDistanceThresholdFlag[k] < tagReadableRadius) && (leftInpolygonReadableFlag[k] == 0))
-							//¾àÀëĞ¡ÓÚãĞÖµ£¬²¢ÇÒ ²»ÔÙÒõÓ°ÇøÄÚ
+							//è·ç¦»å°äºé˜ˆå€¼ï¼Œå¹¶ä¸” ä¸å†é˜´å½±åŒºå†…
 							if ((rightDistanceThresholdFlag[k] < tagReadableRadius) && (rightInpolygonReadableFlag[k] == 0))
 								optionalFlag[k] = 1;
 					}
 
-				//ËùÓĞ±êÇ©µÄ¿É¶ÁĞÔ¶¼·ûºÏ³£Àí
+				//æ‰€æœ‰æ ‡ç­¾çš„å¯è¯»æ€§éƒ½ç¬¦åˆå¸¸ç†
 				int count = 0;
 				for (auto flag : optionalFlag)
 					if (flag)
@@ -1353,13 +1360,13 @@ int main()
 				
 			}
 
-			//ÓÒÌìÏß
+			//å³å¤©çº¿
 			auto numberFlagRightPre = numberFlagRight;
 			for (int j = 0; j < referenceTagNum; ++j)
 			{
 				if (referenceTagCountRightCurrent[j] >= 1)
 				{
-					//´ÓºóÏòÇ°ÕÒµÚÒ»¸öĞ¡ÓÚnumberFlagµÄÖµµÄË÷Òı
+					//ä»åå‘å‰æ‰¾ç¬¬ä¸€ä¸ªå°äºnumberFlagçš„å€¼çš„ç´¢å¼•
 					int numberFlagOption = 0;
 					bool f = false;
 					for (int k = referenceTagCountRight[j] - 1; k >= 0; --k)
@@ -1373,10 +1380,10 @@ int main()
 							break;
 					}
 					if (!isnan(double(numberFlagOption)))
-						//ÒòÎªÊÇC++ÀïµÄË÷Òı£¬ËùÒÔ²»ÊÇ==1¶øÊÇ==0
+						//å› ä¸ºæ˜¯C++é‡Œçš„ç´¢å¼•ï¼Œæ‰€ä»¥ä¸æ˜¯==1è€Œæ˜¯==0
 						if (numberFlagOption == 0)
 						{
-							//Í¬Àí£¬Ô¤ÅĞÎª¿ÉÄÜË÷ÒıµÄ´æÔÚ£¬¹Ê¸³ÖµÎª0
+							//åŒç†ï¼Œé¢„åˆ¤ä¸ºå¯èƒ½ç´¢å¼•çš„å­˜åœ¨ï¼Œæ•…èµ‹å€¼ä¸º0
 							numberFlagRight[1][j] = 0;
 							numberFlagRight[0][j] = 0;
 						}
@@ -1431,12 +1438,12 @@ int main()
 				}
 			}
 
-			//×óÌìÏß£ºÕÒÖ÷ÌìÏßÏÂ£¬µ½Ã¿¸ö±êÇ©¶ÔÓ¦µÄÊı¾İ¶Î--×óÌìÏß¡£×¢£º³¬¹ıÒ»¶¨Ê±¼äµÄÊı¾İ²»ÓÃ£¬¸ÃÂß¼­»¹Î´ÊµÏÖ
+			//å·¦å¤©çº¿ï¼šæ‰¾ä¸»å¤©çº¿ä¸‹ï¼Œåˆ°æ¯ä¸ªæ ‡ç­¾å¯¹åº”çš„æ•°æ®æ®µ--å·¦å¤©çº¿ã€‚æ³¨ï¼šè¶…è¿‡ä¸€å®šæ—¶é—´çš„æ•°æ®ä¸ç”¨ï¼Œè¯¥é€»è¾‘è¿˜æœªå®ç°
 			for (int j = 0; j < referenceTagNum; ++j)
 			{
 				if ((referenceTagCountLeftCurrent[j] >= 1) && (numberFlagVice > 1))
 				{
-					//´ÓºóÏòÇ°ÕÒµÚÒ»¸öĞ¡ÓÚnumberFlagµÄÖµµÄË÷Òı
+					//ä»åå‘å‰æ‰¾ç¬¬ä¸€ä¸ªå°äºnumberFlagçš„å€¼çš„ç´¢å¼•
 					int numberFlagOption = 0;
 					bool f = false;
 					for (int k = referenceTagCountLeft[j] - 1; k >= 0; --k)
@@ -1450,10 +1457,10 @@ int main()
 							break;
 					}
 					if (!isnan(double(numberFlagOption)))
-						//ÒòÎªÊÇC++ÀïµÄË÷Òı£¬ËùÒÔ²»ÊÇ==1¶øÊÇ==0
+						//å› ä¸ºæ˜¯C++é‡Œçš„ç´¢å¼•ï¼Œæ‰€ä»¥ä¸æ˜¯==1è€Œæ˜¯==0
 						if (numberFlagOption == 0)
 						{
-							//Í¬Àí£¬Ô¤ÅĞÎª¿ÉÄÜË÷ÒıµÄ´æÔÚ£¬¹Ê¸³ÖµÎª0
+							//åŒç†ï¼Œé¢„åˆ¤ä¸ºå¯èƒ½ç´¢å¼•çš„å­˜åœ¨ï¼Œæ•…èµ‹å€¼ä¸º0
 							numberFlagLeft[1][j] = 0;
 							numberFlagLeft[0][j] = 0;
 						}
@@ -1461,7 +1468,7 @@ int main()
 						{
 							numberFlagLeft[1][j] = numberFlagOption;
 							numberFlagLeft[0][j] = numberFlagLeft[1][j];
-							//ËùÒÔÎªÊ²Ã´ÊÇleftºÍrightÏà¼õÄØ
+							//æ‰€ä»¥ä¸ºä»€ä¹ˆæ˜¯leftå’Œrightç›¸å‡å‘¢
 							double distanceInterval = sqrt(pow((trackMobileRobotLeft[0][referenceTagNumLeft[numberFlagLeft[1][j]][j]] - trackMobileRobotRight[0][numberFlag]), 2) +
 								pow((trackMobileRobotLeft[1][referenceTagNumLeft[numberFlagLeft[1][j]][j]] - trackMobileRobotRight[1][numberFlag]), 2));
 							if (distanceInterval < distanceFarThreshold)
@@ -1470,7 +1477,7 @@ int main()
 									distanceInterval = sqrt(pow((trackMobileRobotLeft[0][referenceTagNumLeft[numberFlagLeft[1][j]][j]] - trackMobileRobotLeft[0][referenceTagNumLeft[numberFlagLeft[0][j]][j]]), 2) +
 										pow((trackMobileRobotLeft[1][referenceTagNumLeft[numberFlagLeft[1][j]][j]] - trackMobileRobotLeft[1][referenceTagNumLeft[numberFlagLeft[0][j]][j]]), 2));
 									double leftTimeInterval = (readerTimeLeft[referenceTagNumLeft[numberFlagLeft[1][j]][j]] - readerTimeLeft[referenceTagNumLeft[numberFlagLeft[0][j]][j]]) / 1000000;
-									//¾àÀë¼ä¸ô²»ÄÜ´óÓÚ...£¬Ê±¼ä¼ä¸ô²»ÄÜ´óÓÚ...
+									//è·ç¦»é—´éš”ä¸èƒ½å¤§äº...ï¼Œæ—¶é—´é—´éš”ä¸èƒ½å¤§äº...
 									if ((distanceInterval > gradientLen) || (leftTimeInterval > gradientTimeLen))
 										break;
 									else
@@ -1511,7 +1518,7 @@ int main()
 				}
 			}
 
-			//ÓÒÌìÏß
+			//å³å¤©çº¿
 			vector<double> RSSI_MeanTagRight(referenceTagNum, -200);
 			for (int j = 0; j < referenceTagNum; ++j)
 				if (numberFlagRight[1][j] != numberFlagRight[0][j])
@@ -1522,7 +1529,7 @@ int main()
 					RSSI_MeanTagRight[j] = sum / (numberFlagRight[1][j] - numberFlagRight[0][j] + 1);
 				}
 
-			//×óÌìÏß
+			//å·¦å¤©çº¿
 			vector<double> RSSI_MeanTagLeft(referenceTagNum, -200);
 			for (int j = 0; j < referenceTagNum; ++j)
 				if (numberFlagLeft[1][j] != numberFlagLeft[0][j])
@@ -1533,7 +1540,7 @@ int main()
 					RSSI_MeanTagLeft[j] = sum / (numberFlagLeft[1][j] - numberFlagLeft[0][j] + 1);
 				}
 
-			//ÉıĞòÅÅĞò
+			//å‡åºæ’åº
 			vector<int> I_RSSI_Right(referenceTagNum);
 			vector<double> RMTR(RSSI_MeanTagRight.begin(), RSSI_MeanTagRight.end());
 			for (int j = 0; j < referenceTagNum; ++j)
@@ -1556,16 +1563,16 @@ int main()
 					break;
 			}
 
-			//ÓÒÌìÏß£º¼ÆËãÃ¿¸ö±êÇ©µÄÇ°ºóÁ½¸öÊ±¿Ìµã£¬ÒÆ¶¯»úÆ÷ÈËµÄÎ»×Ë£¬¼°Æä¶ÔÓ¦µÄÌìÏßÎ»ÖÃ, ²¢¼ÆËãÆäÈ¨Öµ
+			//å³å¤©çº¿ï¼šè®¡ç®—æ¯ä¸ªæ ‡ç­¾çš„å‰åä¸¤ä¸ªæ—¶åˆ»ç‚¹ï¼Œç§»åŠ¨æœºå™¨äººçš„ä½å§¿ï¼ŒåŠå…¶å¯¹åº”çš„å¤©çº¿ä½ç½®, å¹¶è®¡ç®—å…¶æƒå€¼
 			vector<double> PF_W_RightImprovement(PF_Count, -1);
 
-			//Ñ¡³ö×îºÏÊÊµÄ±êÇ©
+			//é€‰å‡ºæœ€åˆé€‚çš„æ ‡ç­¾
 			if (RSSI_MeanTagRight[I_RSSI_Right.back()] > -53)
 			{
 				int j = I_RSSI_Right.back();
 				if (numberFlagRight[1][j] != numberFlagRight[0][j])
 				{
-					//ºóÒ»¸öÊ±¿Ì£¬Á£×Ó×´Ì¬--ÓÒÌìÏß
+					//åä¸€ä¸ªæ—¶åˆ»ï¼Œç²’å­çŠ¶æ€--å³å¤©çº¿
 					double robotXtAssumePso = trackMobileRobotRight[0][referenceTagNumRight[numberFlagRight[1][j]][j]];
 					double robotYtAssumePso = trackMobileRobotRight[1][referenceTagNumRight[numberFlagRight[1][j]][j]];
 					double robotThtAssumePso = trackMobileRobotRight[2][referenceTagNumRight[numberFlagRight[1][j]][j]];
@@ -1596,14 +1603,14 @@ int main()
 					vector<vector<double>> temp(2, vector<double>(PF_Count));
 					for (int k = 0; k < PF_Count; ++k)
 					{
-						//x×ø±ê
+						//xåæ ‡
 						temp[0][k] = PF_ParticleRobotRightPso[0][k] + antennaHRightError * cos(-antennaAlphaRightError + PF_ParticleRobotRightPso[2][k]);
-						//y×ø±ê
+						//yåæ ‡
 						temp[1][k] = PF_ParticleRobotRightPso[1][k] + antennaHRightError * sin(-antennaAlphaRightError + PF_ParticleRobotRightPso[2][k]);
 					}
 					PF_ParticleAntennaRightPso[j] = temp;
 
-					//Ç°Ò»¸öÊ±¿Ì£¬Á£×Ó×´Ì¬--ÓÒÌìÏß
+					//å‰ä¸€ä¸ªæ—¶åˆ»ï¼Œç²’å­çŠ¶æ€--å³å¤©çº¿
 					double robotXtAssumePre = trackMobileRobotRight[0][referenceTagNumRight[numberFlagRight[0][j]][j]];
 					double robotYtAssumePre = trackMobileRobotRight[1][referenceTagNumRight[numberFlagRight[0][j]][j]];
 					double robotThtAssumePre = trackMobileRobotRight[2][referenceTagNumRight[numberFlagRight[0][j]][j]];
@@ -1633,17 +1640,17 @@ int main()
 						PF_ParticleAntennaRightPre.resize(j + 1);
 					for (int k = 0; k < PF_Count; ++k)
 					{
-						//x×ø±ê
+						//xåæ ‡
 						temp[0][k] = PF_ParticleRobotRightPre[0][k] + antennaHRightError * cos(-antennaAlphaRightError + PF_ParticleRobotRightPre[2][k]);
-						//y×ø±ê
+						//yåæ ‡
 						temp[1][k] = PF_ParticleRobotRightPre[1][k] + antennaHRightError * sin(-antennaAlphaRightError + PF_ParticleRobotRightPre[2][k]);
 					}
 					PF_ParticleAntennaRightPre[j] = temp;
 
-					//¹Û²âÏàÎ»Ìİ¶È
+					//è§‚æµ‹ç›¸ä½æ¢¯åº¦
 					PF_ObserveGradientRight[j] = PF_ObserveNativeRight[numberFlagRight[1][j]][j] - PF_ObserveNativeRight[numberFlagRight[0][j]][j];
 
-					//ÀíÂÛÏàÎ»Ìİ¶È
+					//ç†è®ºç›¸ä½æ¢¯åº¦
 					vector<double> PF_DistanceRightAntennaPre(PF_Count);
 					vector<double> PF_DistanceRightAntennaPso(PF_Count);
 					for (int k = 0; k < PF_Count; ++k)
@@ -1653,11 +1660,11 @@ int main()
 						PF_PredictionRight[j][2][k] = (PF_DistanceRightAntennaPso[k] - PF_DistanceRightAntennaPre[k]) * 2 * PI / waveLengthVar[0];
 					}
 
-					//Á£×ÓÈ¨ÖØÆÀ¹À£ºÓÃÏàÎ»²î
+					//ç²’å­æƒé‡è¯„ä¼°ï¼šç”¨ç›¸ä½å·®
 					for (int k = 0; k < PF_Count; ++k)
 					{
 						PF_DistanceRight[j][k] = PF_PredictionRight[j][2][k] - PF_ObserveGradientRight[j];
-						//ÇóÈ¨ÖØ
+						//æ±‚æƒé‡
 						PF_W_Right[j][k] = (1 / sqrt(2 * PF_R) / sqrt(2 * PI)) * exp(-pow(PF_DistanceRight[j][k], 2) / 2 / (2 * PF_R));
 						PF_W_RightImprovement[k] = PF_W_Right[j][k];
 					}
@@ -1667,7 +1674,7 @@ int main()
 						x = -1;
 			}
 
-			//ÉıĞòÅÅĞò
+			//å‡åºæ’åº
 			vector<int> I_RSSI_Left(referenceTagNum);
 			vector<double> RMTL(RSSI_MeanTagLeft.begin(), RSSI_MeanTagLeft.end());
 			for (int j = 0; j < referenceTagNum; ++j)
@@ -1690,7 +1697,7 @@ int main()
 					break;
 			}
 
-			//×óÌìÏß£º¼ÆËãÃ¿¸ö±êÇ©µÄÇ°ºóÁ½¸öÊ±¿Ìµã£¬ÒÆ¶¯»úÆ÷ÈËµÄÎ»×Ë£¬¼°Æä¶ÔÓ¦µÄÌìÏßÎ»ÖÃ, ²¢¼ÆËãÆäÈ¨Öµ
+			//å·¦å¤©çº¿ï¼šè®¡ç®—æ¯ä¸ªæ ‡ç­¾çš„å‰åä¸¤ä¸ªæ—¶åˆ»ç‚¹ï¼Œç§»åŠ¨æœºå™¨äººçš„ä½å§¿ï¼ŒåŠå…¶å¯¹åº”çš„å¤©çº¿ä½ç½®, å¹¶è®¡ç®—å…¶æƒå€¼
 			vector<double> PF_W_LeftImprovement(PF_Count, -1);
 
 			if (RSSI_MeanTagLeft[I_RSSI_Left.back()] > -53)
@@ -1698,7 +1705,7 @@ int main()
 				int j = I_RSSI_Left.back();
 				if (numberFlagLeft[1][j] != numberFlagLeft[0][j])
 				{
-					//ºóÒ»¸öÊ±¿Ì£¬Á£×Ó×´Ì¬--×óÌìÏß
+					//åä¸€ä¸ªæ—¶åˆ»ï¼Œç²’å­çŠ¶æ€--å·¦å¤©çº¿
 					double robotXtAssumePso = trackMobileRobotLeft[0][referenceTagNumLeft[numberFlagLeft[1][j]][j]];
 					double robotYtAssumePso = trackMobileRobotLeft[1][referenceTagNumLeft[numberFlagLeft[1][j]][j]];
 					double robotThtAssumePso = trackMobileRobotLeft[2][referenceTagNumLeft[numberFlagLeft[1][j]][j]];
@@ -1729,14 +1736,14 @@ int main()
 					vector<vector<double>> temp(2, vector<double>(PF_Count));
 					for (int k = 0; k < PF_Count; ++k)
 					{
-						//x×ø±ê
+						//xåæ ‡
 						temp[0][k] = PF_ParticleRobotLeftPso[0][k] - antennaHLeftError * cos(PI - antennaAlphaLeftError - PF_ParticleRobotLeftPso[2][k]);
-						//y×ø±ê
+						//yåæ ‡
 						temp[1][k] = PF_ParticleRobotLeftPso[1][k] + antennaHLeftError * sin(PI - antennaAlphaLeftError - PF_ParticleRobotLeftPso[2][k]);
 					}
 					PF_ParticleAntennaLeftPso[j] = temp;
 
-					//Ç°Ò»¸öÊ±¿Ì£¬Á£×Ó×´Ì¬--×óÌìÏß
+					//å‰ä¸€ä¸ªæ—¶åˆ»ï¼Œç²’å­çŠ¶æ€--å·¦å¤©çº¿
 					double robotXtAssumePre = trackMobileRobotLeft[0][referenceTagNumLeft[numberFlagLeft[0][j]][j]];
 					double robotYtAssumePre = trackMobileRobotLeft[1][referenceTagNumLeft[numberFlagLeft[0][j]][j]];
 					double robotThtAssumePre = trackMobileRobotLeft[2][referenceTagNumLeft[numberFlagLeft[0][j]][j]];
@@ -1766,17 +1773,17 @@ int main()
 						PF_ParticleAntennaLeftPre.resize(j + 1);
 					for (int k = 0; k < PF_Count; ++k)
 					{
-						//x×ø±ê
+						//xåæ ‡
 						temp[0][k] = PF_ParticleRobotLeftPre[0][k] - antennaHLeftError * cos(PI - antennaAlphaLeftError - PF_ParticleRobotLeftPre[2][k]);
-						//y×ø±ê
+						//yåæ ‡
 						temp[1][k] = PF_ParticleRobotLeftPre[1][k] + antennaHLeftError * sin(PI - antennaAlphaLeftError - PF_ParticleRobotLeftPre[2][k]);
 					}
 					PF_ParticleAntennaLeftPre[j] = temp;
 
-					//¹Û²âÏàÎ»Ìİ¶È
+					//è§‚æµ‹ç›¸ä½æ¢¯åº¦
 					PF_ObserveGradientLeft[j] = PF_ObserveNativeLeft[numberFlagLeft[1][j]][j] - PF_ObserveNativeLeft[numberFlagLeft[0][j]][j];
 
-					//ÀíÂÛÏàÎ»Ìİ¶È
+					//ç†è®ºç›¸ä½æ¢¯åº¦
 					vector<double> PF_DistanceLeftAntennaPre(PF_Count);
 					vector<double> PF_DistanceLeftAntennaPso(PF_Count);
 					for (int k = 0; k < PF_Count; ++k)
@@ -1786,11 +1793,11 @@ int main()
 						PF_PredictionLeft[j][2][k] = (PF_DistanceLeftAntennaPso[k] - PF_DistanceLeftAntennaPre[k]) * 2 * PI / waveLengthVar[0];
 					}
 
-					//Á£×ÓÈ¨ÖØÆÀ¹À£ºÓÃÏàÎ»²î
+					//ç²’å­æƒé‡è¯„ä¼°ï¼šç”¨ç›¸ä½å·®
 					for (int k = 0; k < PF_Count; ++k)
 					{
 						PF_DistanceLeft[j][k] = PF_PredictionLeft[j][2][k] - PF_ObserveGradientLeft[j];
-						//ÇóÈ¨ÖØ
+						//æ±‚æƒé‡
 						PF_W_Left[j][k] = (1 / sqrt(2 * PF_R) / sqrt(2 * PI)) * exp(-pow(PF_DistanceLeft[j][k], 2) / 2 / (2 * PF_R));
 						PF_W_LeftImprovement[k] = PF_W_Left[j][k];
 					}
@@ -1800,8 +1807,8 @@ int main()
 						x = -1;
 			}
 
-			//ÏÂÃæµÄÊÇ²»ÊÇÌ«¹ı·±ËöÁË£¿Ğ´³ÉÒ»¸öº¯Êı£¿
-			//Á£×ÓÈ¨ÖØÆÀ¹À
+			//ä¸‹é¢çš„æ˜¯ä¸æ˜¯å¤ªè¿‡ç¹çäº†ï¼Ÿå†™æˆä¸€ä¸ªå‡½æ•°ï¼Ÿ
+			//ç²’å­æƒé‡è¯„ä¼°
 			vector<vector<double>> PF_W_PrePe;
 			int n = 0;
 			count = 0;
@@ -1856,8 +1863,8 @@ int main()
 			for (auto& x : PF_W[i][1])
 				x /= sum;
 
-			//x£¬y×ø±êµÄ¾ùÖµ¼°ÆäĞ­·½²î
-			//ËùÓĞÁ£×ÓµÄÖĞĞÄÎ»ÖÃ--x£¬y×ø±ê
+			//xï¼Œyåæ ‡çš„å‡å€¼åŠå…¶åæ–¹å·®
+			//æ‰€æœ‰ç²’å­çš„ä¸­å¿ƒä½ç½®--xï¼Œyåæ ‡
 			for (int j = 0; j < 2; ++j)
 				for (int k = 0; k < PF_Count; ++k)
 					PF_CenterMean[j][i] += PF_ParticleRobot[i][j][k] * PF_W[i][1][k];
@@ -1884,7 +1891,7 @@ int main()
 					PF_CenterVar[i][j][k] *= factor;
 				}
 
-			//½Ç¶È¾ùÖµ¼°Ğ­·½²î£º
+			//è§’åº¦å‡å€¼åŠåæ–¹å·®ï¼š
 			double sinsum = 0;
 			for (int j = 0; j < PF_Count; ++j)
 				sinsum += PF_W[i][1][j] * sin(PF_ParticleRobot[i][2][j]);
@@ -1897,22 +1904,22 @@ int main()
 			for (int j = 0; j < PF_Count; ++j)
 				PF_CenterMean[3][i] += PF_ParticleRobot[i][2][j] * PF_W[i][1][j];
 
-			//ÅĞ¶Ïµ±Ç°ÊÇ·ñÆô¶¯ÖØ²ÉÑù
+			//åˆ¤æ–­å½“å‰æ˜¯å¦å¯åŠ¨é‡é‡‡æ ·
 			double squaredSum = weightSqr;
 
-			//ÓĞĞ§Á£×ÓµÄÊıÁ¿
+			//æœ‰æ•ˆç²’å­çš„æ•°é‡
 			double neff = 1 / squaredSum;
 			neffRatioPre[i] = neff / PF_Count;
 			//cout << neffRatioPre[i] << ' ';
-			//¼ÇµÃ»¹Ô­£¡£¡£¡
+			//è®°å¾—è¿˜åŸï¼ï¼ï¼
 			if (neffRatioPre[i] < neffRatioThreshold)
 			{
-				//Ö´ĞĞÏµÍ³ÖØ²ÉÑù
+				//æ‰§è¡Œç³»ç»Ÿé‡é‡‡æ ·
 				int numNewParticles = PF_Count;
 				double randNum = rand() / double(RAND_MAX);
 				vector<double> randSamples(numNewParticles);
 				for (int j = 0; j < numNewParticles; ++j)
-					//randSamples[j] = j * (1 - 1.0 / numNewParticles) / (numNewParticles - 1) + randNum[i];//²âÊÔ
+					//randSamples[j] = j * (1 - 1.0 / numNewParticles) / (numNewParticles - 1) + randNum[i];//æµ‹è¯•
 					randSamples[j] = j * (1 - 1.0 / numNewParticles) / (numNewParticles - 1) + randNum / numNewParticles;
 
 				int n = 0;
@@ -1926,14 +1933,14 @@ int main()
 				{
 					while (Q[index] <= randSamples[n])
 						index = index % (PF_Count - 1) + 1;
-					//µÃµ½ĞÂÁ£×Ó¼¯
+					//å¾—åˆ°æ–°ç²’å­é›†
 					for (int j = 0; j < 3; ++j)
 						PF_ParticleNew[j][n] = PF_ParticleRobot[i][j][index];
 					++n;
 				}
-				//µÃµ½×îºóµÄÖØ²ÉÑùÁ£×Ó¼¯
+				//å¾—åˆ°æœ€åçš„é‡é‡‡æ ·ç²’å­é›†
 				PF_ParticleRobot[i] = PF_ParticleNew;
-				//Çó±¾´ÎµÄ×îÖÕÈ¨ÖØ
+				//æ±‚æœ¬æ¬¡çš„æœ€ç»ˆæƒé‡
 				for (auto& x : PF_W[i][1])
 					x = 1.0 / PF_Count;
 				PF_W_Slow = 0;
@@ -1942,11 +1949,11 @@ int main()
 			}
 			else
 			{
-				//²»Ö´ĞĞÖØ²ÉÑù
+				//ä¸æ‰§è¡Œé‡é‡‡æ ·
 				PF_ReSample[i] = -1;
 			}
 
-			//¶¨Î»Îó²î
+			//å®šä½è¯¯å·®
 			robotXt[i] = mobileRobotPoseVisionRight[numberFlag][0];
 			robotYt[i] = mobileRobotPoseVisionRight[numberFlag][1];
 			robotTht[i] = mobileRobotPoseVisionRight[numberFlag][2];
@@ -1965,18 +1972,18 @@ int main()
 			robotEstimationError[4][i] = PF_CenterMean[3][i] - robotTht[i];
 
 		}
-		//»æÍ¼
+		//ç»˜å›¾
 		// 	figure(1)
 		//     hold off
-		//     plot(reference_tag(:,1), reference_tag(:,2), 'r.', 'markersize',50);  %ÏµÍ³×´Ì¬Î»ÖÃ
+		//     plot(reference_tag(:,1), reference_tag(:,2), 'r.', 'markersize',50);  %ç³»ç»ŸçŠ¶æ€ä½ç½®
 		//     hold on
 
 		//     color = PF_w(2, :,i);
-		//     scatter(PF_particle_robot(1, :, i), PF_particle_robot(2, :, i), 'filled','cdata',color);   %¸÷¸öÁ£×ÓÎ»ÖÃ
-		//     plot(PF_center_mean(1, 1:i),PF_center_mean(2, 1:i),'b.', 'markersize',25);%Á£×ÓÖĞĞÄÎ»ÖÃ
-		//     plot(robot_xt(1:i),robot_yt(1:i),'r.');%»úÆ÷ÈËµÄÎ»ÖÃ
-		//     plot(antenna_left(1, 1:i),antenna_left(2, 1:i),'k.');%×óÌìÏßÎ»ÖÃ
-		//     plot(antenna_right(1, 1:i),antenna_right(2, 1:i),'k.');%ÓÒÌìÏßÎ»ÖÃ
+		//     scatter(PF_particle_robot(1, :, i), PF_particle_robot(2, :, i), 'filled','cdata',color);   %å„ä¸ªç²’å­ä½ç½®
+		//     plot(PF_center_mean(1, 1:i),PF_center_mean(2, 1:i),'b.', 'markersize',25);%ç²’å­ä¸­å¿ƒä½ç½®
+		//     plot(robot_xt(1:i),robot_yt(1:i),'r.');%æœºå™¨äººçš„ä½ç½®
+		//     plot(antenna_left(1, 1:i),antenna_left(2, 1:i),'k.');%å·¦å¤©çº¿ä½ç½®
+		//     plot(antenna_right(1, 1:i),antenna_right(2, 1:i),'k.');%å³å¤©çº¿ä½ç½®
 
 		//     quiver(PF_center_mean(1, i),PF_center_mean(2,i), cos(PF_center_mean(3, i)), sin(PF_center_mean(3, i)),10, 'color', 'c', 'linewidth', 3);
 		//     quiver(PF_particle_robot(1, :, i), PF_particle_robot(2, :, i), cos(PF_particle_robot(3, :, i)), sin(PF_particle_robot(3, :, i)),1, 'color', 'k', 'linewidth', 3);
@@ -1984,15 +1991,15 @@ int main()
 
 		//     axis([PF_scope(1,1)-200 400 PF_scope(2,1)-100 PF_scope(2,2)+100]);
 
-		//¸üĞÂÆµÂÊ°Ñ¿Ø
+		//æ›´æ–°é¢‘ç‡æŠŠæ§
 		auto endTime = clock();
 		//time[i] = (endTime - startTime) / CLOCKS_PER_SEC;
-		//ÔÚWindowsÏÂÊ±¼ä°´ÕÕºÁÃë¼ÆËã£¬ÔÚLinuxÏÂÊ±¼ä°´ÕÕÃë¼ÆËã(???)
+		//åœ¨Windowsä¸‹æ—¶é—´æŒ‰ç…§æ¯«ç§’è®¡ç®—ï¼Œåœ¨Linuxä¸‹æ—¶é—´æŒ‰ç…§ç§’è®¡ç®—(???)
 		//Sleep((1 - time[i]) * 1000);
 		// Sleep(1 - time[i]);
 	}
 
-	//Ïú»Ù
+	//é”€æ¯
 	for (int i = 0; i < sizeof(myVisionTotal) / sizeof(double**); i++)
 	{
 		mxArray* pF = mxGetField(pS, 0, name[i]);
@@ -2004,8 +2011,8 @@ int main()
 	}
 	matClose(pM);
 
-	/*Êı¾İÑéÖ¤£º½«Íâ²¿Êı¾İµ¼Èë²¢ÓëÖ®×÷²î£¬½«²îÖµÓëãĞÖµ¶Ô±È£¬Èô´óÓÚãĞÖµÔò¼ÆÊı*/
-	/*Íâ²¿Êı¾İ´æ´¢*/
+	/*æ•°æ®éªŒè¯ï¼šå°†å¤–éƒ¨æ•°æ®å¯¼å…¥å¹¶ä¸ä¹‹ä½œå·®ï¼Œå°†å·®å€¼ä¸é˜ˆå€¼å¯¹æ¯”ï¼Œè‹¥å¤§äºé˜ˆå€¼åˆ™è®¡æ•°*/
+	/*å¤–éƒ¨æ•°æ®å­˜å‚¨*/
 	//vector<vector<vector<double>>> PF_ParticleRobot0(500, vector<vector<double>>(3, vector<double>(PF_Count)));
 	//vector<vector<vector<double>>> PF_W0(Times, vector<vector<double>>(2, vector<double>(PF_Count)));
 	//vector<vector<double>> PF_CenterMean0(4, vector<double>(Times));
@@ -2072,7 +2079,7 @@ int main()
 	//	}
 	//}
 
-	/*ÓëÍâ²¿Êı¾İ×÷²î²¢¼ÆÊı*/
+	/*ä¸å¤–éƒ¨æ•°æ®ä½œå·®å¹¶è®¡æ•°*/
 	//int count = 0;
 	//for (int i = 0; i < Times; ++i)
 	//{
@@ -2197,18 +2204,18 @@ vector<bool> inpolygon(const vector<double>& xp, const vector<double>& yp, const
 	vector<bool> result(xp.size());
 	for (int i = 0; i < xp.size(); ++i)
 	{
-		bool flag = false;	   //ÅĞ¶Ï½á¹û£¨true£»µãÂäÔÚ¶à±ßĞÎÄÚ£»false:µãÎ´ÂäÔÚ¶à±ßĞÎÄÚ£©
-		int k = xl.size() - 1; //ÊÇ¶à±ßĞÎµÄ×îºóÒ»¸ö¶¥µã
+		bool flag = false;	   //åˆ¤æ–­ç»“æœï¼ˆtrueï¼›ç‚¹è½åœ¨å¤šè¾¹å½¢å†…ï¼›false:ç‚¹æœªè½åœ¨å¤šè¾¹å½¢å†…ï¼‰
+		int k = xl.size() - 1; //æ˜¯å¤šè¾¹å½¢çš„æœ€åä¸€ä¸ªé¡¶ç‚¹
 		for (int j = 0; j < xl.size(); ++j)
 		{
-			//ÅĞ¶ÏµãÊÇ·ñÔÚÏß¶ÎµÄÁ½²à
+			//åˆ¤æ–­ç‚¹æ˜¯å¦åœ¨çº¿æ®µçš„ä¸¤ä¾§
 			if ((yl[j] < yp[i] && yl[k] >= yp[i]) || (yl[k] < yp[i] && yl[j] >= yp[i]))
 			{
-				//¸ù¾İÁ½µãÊ½·½³Ì¼ÆËã³ö¹ıµãPÇÒÆ½ĞĞÓÚXÖáµÄÖ±ÏßÓëÏß¶ÎµÄ½»µã£¬Á½µãÊ½·½³Ì£ºx = x1 +  (y - y1) * (x2 - x1) / (y2 - y1);
+				//æ ¹æ®ä¸¤ç‚¹å¼æ–¹ç¨‹è®¡ç®—å‡ºè¿‡ç‚¹Pä¸”å¹³è¡ŒäºXè½´çš„ç›´çº¿ä¸çº¿æ®µçš„äº¤ç‚¹ï¼Œä¸¤ç‚¹å¼æ–¹ç¨‹ï¼šx = x1 +  (y - y1) * (x2 - x1) / (y2 - y1);
 				if (xl[j] + (yp[i] - yl[j]) * (xl[k] - xl[j]) / (yl[k] - yl[j]) < xp[i])
 					flag = !flag;
 			}
-			//½øĞĞÏÂÒ»Ïß¶ÎÅĞ¶Ï
+			//è¿›è¡Œä¸‹ä¸€çº¿æ®µåˆ¤æ–­
 			k = j;
 		}
 		result[i] = flag;
