@@ -1,2 +1,4 @@
 # localization
 定位界面代码
+大家可以创建branch，然后在创建的branch中对代码进行修改或者注释，最后提交一下request就可以啦。
+之后用github的库来进行代码的整合应该会方便一些。
