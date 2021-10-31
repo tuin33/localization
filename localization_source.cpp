@@ -13,17 +13,17 @@
 using namespace std;
 struct Data
 {
-	vector<int> no;				//1
+	vector<int> no;			//1
 	vector<double> phase;		//2
 	vector<double> myThree;		//3
 	vector<double> myFour;		//4
-	vector<double> Xcoordinate; //5
-	vector<double> Ycoordinate; //6
-	vector<double> Zcoordinate; //7
+	vector<double> Xcoordinate; 	//5
+	vector<double> Ycoordinate; 	//6
+	vector<double> Zcoordinate; 	//7
 	vector<double> readerTime;	//8
-	vector<double> windowsTime; //9
+	vector<double> windowsTime;     //9
 	vector<double> myTen;		//10
-	vector<int> RSSI;			//11
+	vector<int> RSSI;		//11 信号的发射强度
 };
 struct TextData
 {
