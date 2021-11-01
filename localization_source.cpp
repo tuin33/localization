@@ -13,17 +13,17 @@
 using namespace std;
 struct Data
 {
-	vector<int> no;				//1
+	vector<int> no;			//1
 	vector<double> phase;		//2
 	vector<double> myThree;		//3
 	vector<double> myFour;		//4
-	vector<double> Xcoordinate; //5
-	vector<double> Ycoordinate; //6
-	vector<double> Zcoordinate; //7
+	vector<double> Xcoordinate; 	//5
+	vector<double> Ycoordinate; 	//6
+	vector<double> Zcoordinate; 	//7
 	vector<double> readerTime;	//8
-	vector<double> windowsTime; //9
+	vector<double> windowsTime;     //9
 	vector<double> myTen;		//10
-	vector<int> RSSI;			//11
+	vector<int> RSSI;		//11 信号的发射强度
 };
 struct TextData
 {
@@ -321,23 +321,32 @@ int main()
 
 	//读取，并对测试数据分类
 	//提取左右天线读取标签的epc、该epc标签的读取次数、标签的数量
+	//左天线
 	for (auto& x : myDataResultLeft.data.phase)
 		//将相位转化为弧度
 		x = x / 180 * PI;
 
 	//textData中存放的是读取的次数和每一次读取到的epc，下面一段代码只是一个提取操作
-	vector<string> epcDataLeft(myDataResultLeft.textData.epcData.size());
-	for (int i = 0; i < epcDataLeft.size(); ++i)
-		epcDataLeft[i] = myDataResultLeft.textData.epcData[i];
+	//vector<string> epcDataLeft(myDataResultLeft.textData.epcData.size());
+	//for (int i = 0; i < epcDataLeft.size(); ++i)
+	//	epcDataLeft[i] = myDataResultLeft.textData.epcData[i];
+	//修改了初始化方式，该变量中存储左天线读取到的标签信息
+	vector<string> epcDataLeft(myDataResultLeft.textData.epcData);
 
 	//用来统计每个标签被读取的次数
 	vector<int> referenceTagCountLeft(referenceTagNum);
+	//该变量为一个二维向量
+	//向量的行：某一标签被读取的次数，列：某一标签序号
+	//向量的每个元素为该标签在第几次被读取到
 	vector<vector<int>> referenceTagNumLeft;
 	for (int i = 0; i < myDataResultLeft.data.no.size(); ++i)
 		for (int j = 0; j < referenceTagNum; ++j)
+			//判断已知标签与天线读取标签是否相同
 			if (referenceTag_EPC[j] == epcDataLeft[i])
 			{
 				++referenceTagCountLeft[j];
+				//由于不知道大小，故采用若空间过小则重新分配的方法
+				//出于节省空间的想法，但在时间上有一定消耗
 				if (referenceTagNumLeft.size() < referenceTagCountLeft[j])
 				{
 					vector<int> v(referenceTagNum);
@@ -349,20 +358,31 @@ int main()
 				break;
 			}
 
+	//右天线
 	for (auto& x : myDataResultRight.data.phase)
+		//将相位转化为弧度
 		x = x / 180 * PI;
+	
+	//vector<string> epcDataRight(myDataResultRight.textData.epcData.size());
+	//for (int i = 0; i < epcDataRight.size(); ++i)
+	//	epcDataRight[i] = myDataResultRight.textData.epcData[i];
+	//修改了初始化方式，该变量中存储右天线读取到的标签信息
+	vector<string> epcDataRight(myDataResultRight.textData.epcData);
 
-	vector<string> epcDataRight(myDataResultRight.textData.epcData.size());
-	for (int i = 0; i < epcDataRight.size(); ++i)
-		epcDataRight[i] = myDataResultRight.textData.epcData[i];
-
+	//用来统计每个标签被读取的次数
 	vector<int> referenceTagCountRight(referenceTagNum);
+	//该变量为一个二维向量
+	//向量的行：某一标签被读取的次数，列：某一标签序号
+	//向量的每个元素为该标签在第几次被读取到
 	vector<vector<int>> referenceTagNumRight;
 	for (int i = 0; i < myDataResultRight.data.no.size(); ++i)
 		for (int j = 0; j < referenceTagNum; ++j)
+			//判断已知标签与天线读取标签是否相同
 			if (referenceTag_EPC[j] == epcDataRight[i])
 			{
-				referenceTagCountRight[j] = referenceTagCountRight[j] + 1;
+				++referenceTagCountRight[j];
+				//由于不知道大小，故采用若空间过小则重新分配的方法
+				//出于节省空间的想法，但在时间上有一定消耗
 				if (referenceTagNumRight.size() < referenceTagCountRight[j])
 				{
 					vector<int> v(referenceTagNum);
@@ -387,6 +407,7 @@ int main()
 	double indexLb = 0.5; //0.5;%1/2 3/4 2/3
 	double indexUb = 1.5; //3/2 5/4 4/3
 
+	//左天线
 	//行数是读取的最多次数，列数是标签总数
 	vector<vector<double>> phaseMeasurementAdjustLeft(mymax(referenceTagCountLeft), vector<double>(referenceTagNum));
 	for (int j = 0; j < referenceTagNum; ++j)
@@ -396,7 +417,8 @@ int main()
 			phaseMeasurementAdjustLeft[0][j] = myDataResultLeft.data.phase[referenceTagNumLeft[0][j]];
 			for (int i = 1; i < referenceTagCountLeft[j]; ++i)
 			{
-				//相当于在预处理后把每一次的相位差都在-pi/2~pi/2之间
+				//预处理
+				//把后一次与前一次的相位差调整在-pi/2~pi/2内
 				auto dif = myDataResultLeft.data.phase[referenceTagNumLeft[i][j]] - phaseMeasurementAdjustLeft[i - 1][j];
 				if ((dif > PI * indexLb) && (dif < PI * indexUb))
 					phaseMeasurementAdjustLeft[i][j] = myDataResultLeft.data.phase[referenceTagNumLeft[i][j]] - PI;
@@ -407,6 +429,7 @@ int main()
 			}
 		}
 
+	//这步处理有何作用？
 	if (accumulate(referenceTagCountLeft.begin(), referenceTagCountLeft.end(), 0) > 0)
 		for (auto& vec : phaseMeasurementAdjustLeft)
 			for (auto& x : vec)
@@ -421,18 +444,25 @@ int main()
 			phasePsoLeft[0][j] = phaseMeasurementAdjustLeft[0][j];
 			for (int i = 1; i < referenceTagCountLeft[j]; i++)
 			{
+				//四舍五入为最近的整数，若小数部分为0.5，则舍入为距离0更远的整数，如round(1.5)=2，round(-1.5)=-2
 				int k = round((phaseMeasurementAdjustLeft[i][j] - phasePsoLeft[i - 1][j]) / PI);
+				//但这一步还是有些疑惑
 				phasePsoLeft[i][j] = phaseMeasurementAdjustLeft[i][j] - PI * k;
 			}
 		}
 
+	//右天线
+	//行数是读取的最多次数，列数是标签总数
 	vector<vector<double>> phaseMeasurementAdjustRight(mymax(referenceTagCountRight), vector<double>(referenceTagNum));
 	for (int j = 0; j < referenceTagNum; ++j)
 		if (referenceTagCountRight[j] > 1)
 		{
+			//左边的零是减过1，0表示被读取过一次，j表示第j个标签。故下面一行代码是每个标签被第一次读取的相位
 			phaseMeasurementAdjustRight[0][j] = myDataResultRight.data.phase[referenceTagNumRight[0][j]];
 			for (int i = 1; i < referenceTagCountRight[j]; ++i)
 			{
+				//预处理
+				//把后一次与前一次的相位差调整在-pi/2~pi/2内
 				auto dif = myDataResultRight.data.phase[referenceTagNumRight[i][j]] - phaseMeasurementAdjustRight[i - 1][j];
 				if ((dif > PI * indexLb) && (dif < PI * indexUb))
 					phaseMeasurementAdjustRight[i][j] = myDataResultRight.data.phase[referenceTagNumRight[i][j]] - PI;
@@ -443,10 +473,13 @@ int main()
 			}
 		}
 
+	//这步处理有何作用？
 	for (auto& vec : phaseMeasurementAdjustRight)
 		for (auto& x : vec)
 			x = 2 * PI - x;
 
+	//行数是读取的最多次数，列数是标签总数
+	//下面一段代码将前后两次读取的相位差值缩小到PI内
 	vector<vector<double>> phasePsoRight(mymax(referenceTagCountRight), vector<double>(referenceTagNum));
 	for (int j = 0; j < referenceTagNum; ++j)
 		if (referenceTagCountRight[j] > 1)
@@ -454,16 +487,18 @@ int main()
 			phasePsoRight[0][j] = phaseMeasurementAdjustRight[0][j];
 			for (int i = 1; i < referenceTagCountRight[j]; ++i)
 			{
-				auto k = round((phaseMeasurementAdjustRight[i][j] - phasePsoRight[i - 1][j]) / PI);
+				//四舍五入为最近的整数
+				int k = round((phaseMeasurementAdjustRight[i][j] - phasePsoRight[i - 1][j]) / PI);
+				//但这一步还是有些疑惑
 				phasePsoRight[i][j] = phaseMeasurementAdjustRight[i][j] - PI * k;
 			}
 		}
 
 	// 右天线：利用时间差信息，通过插值法得到相位测量时刻真实的移动机器人和天线的位姿/位置
-	vector<vector<double>> trackMobileRobotRight;
-	trackMobileRobotRight.push_back(myDataResultRight.data.Xcoordinate);
-	trackMobileRobotRight.push_back(myDataResultRight.data.Ycoordinate);
-	trackMobileRobotRight.push_back(myDataResultRight.data.Zcoordinate);
+	vector<vector<double>> trackMobileRobotRight(3);
+	trackMobileRobotRight[0] = myDataResultRight.data.Xcoordinate;
+	trackMobileRobotRight[1] = myDataResultRight.data.Ycoordinate;
+	trackMobileRobotRight[2] = myDataResultRight.data.Zcoordinate;
 
 	//将里程计得到的机器人航迹分发
 	vector<vector<vector<double>>> trackMobileRobotRightTag(referenceTagNum, vector<vector<double>>(mymax(referenceTagCountRight), vector<double>(3)));
