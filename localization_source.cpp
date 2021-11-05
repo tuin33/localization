@@ -595,7 +595,7 @@ int main()
 			for (int i = 0; i < referenceTagCountRight[j]; ++i)
 				RSSI_TagRight[i][j] = myDataResultRight.data.RSSI[referenceTagNumRight[i][j]];
 
-	//左天线：利用时间差信息，通过插值法得到相位测鲁时刻真实的移动机器人和天线的位姿/位置
+	//左天线：利用时间差信息，通过插值法得到相位测量时刻真实的移动机器人和天线的位姿/位置
 	vector<vector<double>> trackMobileRobotLeft(3);
 	trackMobileRobotLeft[0] = myDataResultLeft.data.Xcoordinate;
 	trackMobileRobotLeft[1] = myDataResultLeft.data.Ycoordinate;
