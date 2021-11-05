@@ -289,7 +289,7 @@ int main()
 	for (auto& vec : referenceTag)
 	{
 		//注意每一层循环中，vec都是referenceTag中的某一行。故循环共需要执行行数次
-		auto temp = vec[2];
+		double temp = vec[2];
 		vec[2] = vec[1];
 		vec[1] = vec[0];
 		vec[0] = temp;
@@ -419,7 +419,7 @@ int main()
 			{
 				//预处理
 				//把后一次与前一次的相位差调整在-pi/2~pi/2内
-				auto dif = myDataResultLeft.data.phase[referenceTagNumLeft[i][j]] - phaseMeasurementAdjustLeft[i - 1][j];
+				double dif = myDataResultLeft.data.phase[referenceTagNumLeft[i][j]] - phaseMeasurementAdjustLeft[i - 1][j];
 				if ((dif > PI * indexLb) && (dif < PI * indexUb))
 					phaseMeasurementAdjustLeft[i][j] = myDataResultLeft.data.phase[referenceTagNumLeft[i][j]] - PI;
 				else if ((-dif > PI * indexLb) && (-dif < PI * indexUb))
@@ -463,7 +463,7 @@ int main()
 			{
 				//预处理
 				//把后一次与前一次的相位差调整在-pi/2~pi/2内
-				auto dif = myDataResultRight.data.phase[referenceTagNumRight[i][j]] - phaseMeasurementAdjustRight[i - 1][j];
+				double dif = myDataResultRight.data.phase[referenceTagNumRight[i][j]] - phaseMeasurementAdjustRight[i - 1][j];
 				if ((dif > PI * indexLb) && (dif < PI * indexUb))
 					phaseMeasurementAdjustRight[i][j] = myDataResultRight.data.phase[referenceTagNumRight[i][j]] - PI;
 				else if ((-dif > PI * indexLb) && (-dif < PI * indexUb))
@@ -528,7 +528,7 @@ int main()
 	myVisionCurrent_AGV[2][0] = myVisionCurrent_AGV[2][0];
 	for (int i = 1; i < myVisionCurrent_AGV[2].size(); ++i)
 	{
-		auto k = round((myVisionCurrent_AGV[2][i] - myVisionCurrent_AGV[2][i - 1]) / PI);
+		int k = round((myVisionCurrent_AGV[2][i] - myVisionCurrent_AGV[2][i - 1]) / PI);
 		myVisionCurrent_AGV[2][i] = myVisionCurrent_AGV[2][i] - PI * k;
 	}
 
@@ -596,10 +596,10 @@ int main()
 				RSSI_TagRight[i][j] = myDataResultRight.data.RSSI[referenceTagNumRight[i][j]];
 
 	//左天线：利用时间差信息，通过插值法得到相位测鲁时刻真实的移动机器人和天线的位姿/位置
-	vector<vector<double>> trackMobileRobotLeft;
-	trackMobileRobotLeft.push_back(myDataResultLeft.data.Xcoordinate);
-	trackMobileRobotLeft.push_back(myDataResultLeft.data.Ycoordinate);
-	trackMobileRobotLeft.push_back(myDataResultLeft.data.Zcoordinate);
+	vector<vector<double>> trackMobileRobotLeft(3);
+	trackMobileRobotLeft[0] = myDataResultLeft.data.Xcoordinate;
+	trackMobileRobotLeft[1] = myDataResultLeft.data.Ycoordinate;
+	trackMobileRobotLeft[2] = myDataResultLeft.data.Zcoordinate;
 
 	//里程计得到的机器人航迹分发
 	vector<vector<vector<double>>> trackMobileRobotLeftTag(referenceTagNum, vector<vector<double>>(mymax(referenceTagCountLeft), vector<double>(3)));
@@ -684,11 +684,14 @@ int main()
 	//粒子状态（移动机器人位姿），第一、二、三行为机器人的x y th值
 	vector<vector<vector<double>>> PF_ParticleRobot(500, vector<vector<double>>(3, vector<double>(PF_Count)));
 	//粒子状态（变换矩阵），分别对应两个平移、一个旋转
+	//没有用到
 	vector<vector<vector<double>>> PF_ParticleTransformation(500, vector<vector<double>>(3, vector<double>(PF_Count)));
 	//粒子状态（左天线位置），第一、二行为左天线的x y值
-	vector<vector<vector<double>>> PF_ParticleAntennaLeft(20000, vector<vector<double>>(2, vector<double>(PF_Count)));
+	//vector<vector<vector<double>>> PF_ParticleAntennaLeft(20000, vector<vector<double>>(2, vector<double>(PF_Count)));
+	vector<vector<vector<double>>> PF_ParticleAntennaLeft(Times, vector<vector<double>>(2, vector<double>(PF_Count)));
 	//粒子状态（右天线位置），第一、二行为右天线的x y值
-	vector<vector<vector<double>>> PF_ParticleAntennaRight(20000, vector<vector<double>>(2, vector<double>(PF_Count)));
+	//vector<vector<vector<double>>> PF_ParticleAntennaRight(20000, vector<vector<double>>(2, vector<double>(PF_Count)));
+	vector<vector<vector<double>>> PF_ParticleAntennaRight(Times, vector<vector<double>>(2, vector<double>(PF_Count)));
 
 	//观测：保存左天线两个时刻之间的相位差值,以行排列
 	vector<double> PF_ObserveGradientLeft(referenceTag.size());
@@ -721,7 +724,8 @@ int main()
 	//第一行：本次观测得权重；第二行：本次最终的权重
 	vector<vector<vector<double>>> PF_W(Times, vector<vector<double>>(2, vector<double>(PF_Count)));
 	//协方差矩阵
-	vector<vector<vector<double>>> PF_CenterVar(200, vector<vector<double>>(3, vector<double>(3)));
+	//vector<vector<vector<double>>> PF_CenterVar(200, vector<vector<double>>(3, vector<double>(3)));
+	vector<vector<vector<double>>> PF_CenterVar(Times, vector<vector<double>>(3, vector<double>(3)));
 	double neffRatioThreshold = 0.6;
 
 	//标签可读性的相关判定值
